@@ -30,7 +30,7 @@ userRouter
       }
     );
     if (!user) {
-      res.sendStatus(404);
+      return res.sendStatus(404);
     }
     res.send(user);
   })
@@ -41,7 +41,7 @@ userRouter
       { languages: [req.params.language], role: UserRole.Teacher },
     );
     if (!user) {
-      res.sendStatus(404);
+      return res.sendStatus(404);
     }
     res.send(user);
   })
@@ -52,7 +52,7 @@ userRouter
       { id: parseInt(req.params.id),  languages: [req.params.language], role: UserRole.Teacher },
     );
     if (!user) {
-       res.sendStatus(404);
+      return res.sendStatus(404);
     }
     res.send(user);
   })
@@ -67,7 +67,7 @@ userRouter
       }
     );
     if (!user) {
-      res.sendStatus(404);
+      return res.sendStatus(404);
     }
     res.send(user);
   })
@@ -79,7 +79,7 @@ userRouter
 
     // check if user exists
     if (user) {
-      res.sendStatus(409);
+      return res.sendStatus(409);
     }
 
     const hashedPassword = await hashPassword(password);
@@ -98,7 +98,8 @@ userRouter
     }
 
     await req.userRepository!.persistAndFlush(user);
-    res.send(user);
+    //res.send(user);
+    return res.sendStatus(200);
   })
 
   // endpoint to sign in user
@@ -106,13 +107,13 @@ userRouter
     const { username, password }: AuthenticationDto = req.body;
     const user = await req.userRepository!.findOne({ username });
     if (!user) {
-      res.sendStatus(401);
+      return res.sendStatus(401);
     }
     const hashedPassword = await hashPassword(password);
     if (hashedPassword !== user.password) {
-      res.sendStatus(401);
+      return res.sendStatus(401);
     }
-    res.send(generateJwt(user));
+    return res.send(generateJwt(user));
   })
 
   // update signed in user's profile
@@ -122,13 +123,13 @@ userRouter
     const { first_name, last_name, country, is_native, type, intro }: AuthenticationDto = req.body;
     const user = await req.userRepository!.findOne({ id });
     if (!user) {
-      res.sendStatus(401);
+      return res.sendStatus(401);
     }
     const updateCount = await req.userRepository?.nativeUpdate({ id }, req.body);
     if (updateCount) {
-      res.sendStatus(200);
+      return res.sendStatus(200);
     }
-    res.sendStatus(404);
+    return res.sendStatus(404);
   })
 
   // deletes signed in user
@@ -137,9 +138,9 @@ userRouter
     const id = authUser.id;
     const deletedCount = await req.userRepository?.nativeDelete({ id });
     if (deletedCount) {
-      res.sendStatus(200);
+      return res.sendStatus(200);
     }
-    res.sendStatus(404);
+    return res.sendStatus(404);
   });
 
 interface AuthenticationDto {

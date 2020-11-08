@@ -35,7 +35,7 @@ exports.userRouter
         populate: ["languages", "lessons"],
     });
     if (!user) {
-        res.sendStatus(404);
+        return res.sendStatus(404);
     }
     res.send(user);
 }))
@@ -43,7 +43,7 @@ exports.userRouter
     .get("/teachers/:language", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield req.userRepository.find({ languages: [req.params.language], role: user_1.UserRole.Teacher });
     if (!user) {
-        res.sendStatus(404);
+        return res.sendStatus(404);
     }
     res.send(user);
 }))
@@ -51,7 +51,7 @@ exports.userRouter
     .get("/teacher/:id/:language", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield req.userRepository.find({ id: parseInt(req.params.id), languages: [req.params.language], role: user_1.UserRole.Teacher });
     if (!user) {
-        res.sendStatus(404);
+        return res.sendStatus(404);
     }
     res.send(user);
 }))
@@ -62,7 +62,7 @@ exports.userRouter
         populate: ["languages"],
     });
     if (!user) {
-        res.sendStatus(404);
+        return res.sendStatus(404);
     }
     res.send(user);
 }))
@@ -72,7 +72,7 @@ exports.userRouter
     let user = yield req.userRepository.findOne({ username });
     // check if user exists
     if (user) {
-        res.sendStatus(409);
+        return res.sendStatus(409);
     }
     const hashedPassword = yield password_utils_1.hashPassword(password);
     user = new user_1.User();
@@ -86,20 +86,21 @@ exports.userRouter
         lessons.filter((lesson) => lesson).forEach((lesson) => req.orm.em.merge(lesson));
     }
     yield req.userRepository.persistAndFlush(user);
-    res.send(user);
+    //res.send(user);
+    return res.sendStatus(200);
 }))
     // endpoint to sign in user
     .post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     const user = yield req.userRepository.findOne({ username });
     if (!user) {
-        res.sendStatus(401);
+        return res.sendStatus(401);
     }
     const hashedPassword = yield password_utils_1.hashPassword(password);
     if (hashedPassword !== user.password) {
-        res.sendStatus(401);
+        return res.sendStatus(401);
     }
-    res.send(jwtGenerator_1.generateJwt(user));
+    return res.send(jwtGenerator_1.generateJwt(user));
 }))
     // update signed in user's profile
     .patch('/update', passport_1.passport.authenticate('jwt', { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -109,13 +110,13 @@ exports.userRouter
     const { first_name, last_name, country, is_native, type, intro } = req.body;
     const user = yield req.userRepository.findOne({ id });
     if (!user) {
-        res.sendStatus(401);
+        return res.sendStatus(401);
     }
     const updateCount = yield ((_a = req.userRepository) === null || _a === void 0 ? void 0 : _a.nativeUpdate({ id }, req.body));
     if (updateCount) {
-        res.sendStatus(200);
+        return res.sendStatus(200);
     }
-    res.sendStatus(404);
+    return res.sendStatus(404);
 }))
     // deletes signed in user
     .delete('/delete', passport_1.passport.authenticate('jwt', { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -124,7 +125,7 @@ exports.userRouter
     const id = authUser.id;
     const deletedCount = yield ((_b = req.userRepository) === null || _b === void 0 ? void 0 : _b.nativeDelete({ id }));
     if (deletedCount) {
-        res.sendStatus(200);
+        return res.sendStatus(200);
     }
-    res.sendStatus(404);
+    return res.sendStatus(404);
 }));
