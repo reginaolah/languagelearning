@@ -1,1 +1,1 @@
-insert into user (username, password, first_name, last_name, role) values ('admin', '271778ce62523a6bc67b202bf3b357d0033320a79d0fba2ae8a99c99cc8b9816084203153675d38ff19d35e5254310e41fc08c8f0c540672d19c08feba2a0978', 'user', 'user', 'TEACHER');
+insert into user (username, password, first_name, last_name, role, createdAt, updatedAt) values ('admin', '271778ce62523a6bc67b202bf3b357d0033320a79d0fba2ae8a99c99cc8b9816084203153675d38ff19d35e5254310e41fc08c8f0c540672d19c08feba2a0978', 'user', 'user', 'TEACHER', 20201030, 20201030);
