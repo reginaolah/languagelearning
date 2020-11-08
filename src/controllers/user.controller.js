@@ -87,7 +87,6 @@ exports.userRouter
     }
     yield req.userRepository.persistAndFlush(user);
     res.send(user);
-    return res.sendStatus(200);
 }))
     // endpoint to sign in user
     .post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
