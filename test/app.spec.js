@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("../src/server");
 const supertest_1 = __importDefault(require("supertest"));
 describe('Language Learning Platform', () => {
-    const user = { username: 'user', password: 'password', role: 'STUDENT', first_name: 'user', last_name: 'user' };
+    const user = { username: 'user', password: 'password', first_name: 'test', last_name: 'user', role: 'STUDENT' };
     let requestHandle;
     beforeEach(() => {
         requestHandle = supertest_1.default(server_1.app);

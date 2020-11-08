@@ -73,7 +73,7 @@ exports.userRouter
         lessons.filter((lesson) => lesson).forEach((lesson) => req.orm.em.merge(lesson));
     }
     yield req.userRepository.persistAndFlush(user);
-    res.send(user);
+    //res.send(user);
     return res.sendStatus(200);
 }))
     // endpoint to sign in user

@@ -79,7 +79,7 @@ userRouter
     }
 
     await req.userRepository!.persistAndFlush(user);
-    res.send(user);
+    //res.send(user);
     return res.sendStatus(200);
   })
 
