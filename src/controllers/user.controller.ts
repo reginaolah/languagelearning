@@ -14,6 +14,7 @@ userRouter
   })
 
   // list all users
+  // protected
   .get("", passport.authenticate('jwt', { session: false }), async (req, res) => {
     const users = await req.userRepository!.findAll({
       populate: ["languages","lessons"],
@@ -22,6 +23,7 @@ userRouter
   })
 
   // get one user by id
+  // protected
   .get("/:id", passport.authenticate('jwt', { session: false }), async (req, res) => {
     const user = await req.userRepository!.findOne(
       { id: parseInt(req.params.id) },
@@ -35,29 +37,8 @@ userRouter
     res.send(user);
   })
 
-  // list all teachers who teaches {language}
-  .get("/teachers/:language", async (req, res) => {
-    const user = await req.userRepository!.find(
-      { languages: [req.params.language], role: UserRole.Teacher },
-    );
-    if (!user) {
-      return res.sendStatus(404);
-    }
-    res.send(user);
-  })
-
-  // returns teacher's course page of {language} by {id}
-  .get("/teacher/:id/:language", async (req, res) => {
-    const user = await req.userRepository!.find(
-      { id: parseInt(req.params.id),  languages: [req.params.language], role: UserRole.Teacher },
-    );
-    if (!user) {
-      return res.sendStatus(404);
-    }
-    res.send(user);
-  })
-
   //get user profile
+  //protected
   .post("/profile", passport.authenticate('jwt', { session: false }), async (req, res) => {
     let authUser = req.orm.em.getReference(User, req.user!.id);
     const user = await req.userRepository!.findOne(
@@ -79,7 +60,7 @@ userRouter
 
     // check if user exists
     if (user) {
-      res.sendStatus(409);
+      return res.sendStatus(409);
     }
 
     const hashedPassword = await hashPassword(password);
@@ -98,8 +79,8 @@ userRouter
     }
 
     await req.userRepository!.persistAndFlush(user);
-    res.send(user);
-    //return res.sendStatus(200);
+    //res.send(user);
+    return res.sendStatus(200);
   })
 
   // endpoint to sign in user
@@ -114,33 +95,6 @@ userRouter
       return res.sendStatus(401);
     }
     return res.send(generateJwt(user));
-  })
-
-  // update signed in user's profile
-  .patch('/update', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    const authUser = req.orm.em.getReference(User, req.user!.id);
-    const id = authUser.id;
-    const { first_name, last_name, country, is_native, type, intro }: AuthenticationDto = req.body;
-    const user = await req.userRepository!.findOne({ id });
-    if (!user) {
-      return res.sendStatus(401);
-    }
-    const updateCount = await req.userRepository?.nativeUpdate({ id }, req.body);
-    if (updateCount) {
-      return res.sendStatus(200);
-    }
-    return res.sendStatus(404);
-  })
-
-  // deletes signed in user
-  .delete('/delete', passport.authenticate('jwt', { session: false }), async (req, res) => {
-    const authUser = req.orm.em.getReference(User, req.user!.id);
-    const id = authUser.id;
-    const deletedCount = await req.userRepository?.nativeDelete({ id });
-    if (deletedCount) {
-      return res.sendStatus(200);
-    }
-    return res.sendStatus(404);
   });
 
 interface AuthenticationDto {
