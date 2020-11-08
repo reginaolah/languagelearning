@@ -21,21 +21,12 @@ exports.lessonRouter
     req.lessonRepository = req.orm.em.getRepository(lesson_1.Lesson);
     next();
 })
-    // list all sold lessons of a teacher
-    .get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const lessons = yield req.lessonRepository.find({ teacher_id: parseInt(req.params.id) }, {
-        populate: ["language"],
-    });
-    res.send(lessons);
-}))
-    // list all sold lessons of a teacher by language
+    // return all sold lessons of a teacher by {language} by {id}
     .get("/:id/:language", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const lessons = yield req.lessonRepository.find({ teacher_id: parseInt(req.params.id) }, {
-        populate: ["language"],
-    });
+    const lessons = yield req.lessonRepository.find({ teacher_id: parseInt(req.params.id), language: parseInt(req.params.language) });
     res.send(lessons);
 }))
-    // add new lesson for a teacher
+    // teachers use to create new lesson type
     .post("/newlesson", passport_1.passport.authenticate("jwt", { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.user.role === user_1.UserRole.Teacher) {
         const { title, price } = req.body;
@@ -50,4 +41,41 @@ exports.lessonRouter
         res.send(lesson);
     }
     return res.sendStatus(403);
+}))
+    // teachers use to update lesson type
+    .patch("/update/:id", passport_1.passport.authenticate("jwt", { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const authUser = req.orm.em.getReference(user_1.User, req.user.id);
+    const teacherid = authUser.id;
+    const id = req.params.id;
+    const { title, price } = req.body;
+    const lesson = yield req.lessonRepository.findOne({ id: parseInt(req.params.id), teacher_id: teacherid });
+    if (!lesson) {
+        return res.sendStatus(401);
+    }
+    if (lesson) {
+        const updateCount = yield ((_a = req.lessonRepository) === null || _a === void 0 ? void 0 : _a.nativeUpdate({ id }, req.body));
+        if (updateCount) {
+            return res.sendStatus(200);
+        }
+    }
+    return res.sendStatus(404);
+}))
+    // teachers use to delete lesson type
+    .delete("/delete/:id", passport_1.passport.authenticate("jwt", { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    const authUser = req.orm.em.getReference(user_1.User, req.user.id);
+    const teacherid = authUser.id;
+    const id = req.params.id;
+    const lesson = yield req.lessonRepository.findOne({ id: parseInt(req.params.id), teacher_id: teacherid });
+    if (!lesson) {
+        return res.sendStatus(401);
+    }
+    if (lesson) {
+        const deletedCount = yield ((_b = req.lessonRepository) === null || _b === void 0 ? void 0 : _b.nativeDelete({ id }));
+        if (deletedCount) {
+            return res.sendStatus(200);
+        }
+    }
+    return res.sendStatus(404);
 }));

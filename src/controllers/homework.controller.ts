@@ -4,6 +4,7 @@ import { Homework } from "../entities/homework";
 import { User, UserRole } from "../entities/user";
 import { hashPassword } from "../security/password-utils";
 import { passport } from "../security/passport";
+import { v4 } from "uuid";
 
 export const homeworkRouter = Router();
 
@@ -22,12 +23,12 @@ homeworkRouter
   // add new lesson for a teacher
   .post("/newhomework", passport.authenticate("jwt", { session: false }), async (req, res) => {
     if (req.user!.role === UserRole.Teacher) {
-      const { name, title, description, path_to_solution }: AuthenticationDto = req.body;
+      const { uuid, name, title, description, path_to_solution }: AuthenticationDto = req.body;
       const homework = new Homework();
 
-      wrap(homework).assign(req.body, { em: req.orm.em });
+      wrap(homework).assign({...req.body, uuid: v4()}, { em: req.orm.em });
 
-      homework.teacher = req.orm.em.getReference(User, req.user!.id);
+      homework.owner = req.orm.em.getReference(User, req.user!.id);
 
       await req.homeworkRepository!.persistAndFlush(homework);
 
@@ -37,6 +38,7 @@ homeworkRouter
   });
 
 interface AuthenticationDto {
+  uuid: string;
   name: number;
   title: string;
   description: string;

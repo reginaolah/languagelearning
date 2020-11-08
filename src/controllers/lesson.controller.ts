@@ -13,29 +13,15 @@ lessonRouter
     next();
   })
 
-  // list all sold lessons of a teacher
-  .get("/:id", async (req, res) => {
-    const lessons = await req.lessonRepository!.find(
-      { teacher_id: parseInt(req.params.id) },
-      {
-        populate: ["language"],
-      }
-    );
-    res.send(lessons);
-  })
-
-  // list all sold lessons of a teacher by language
+  // return all sold lessons of a teacher by {language} by {id}
   .get("/:id/:language", async (req, res) => {
     const lessons = await req.lessonRepository!.find(
-      { teacher_id: parseInt(req.params.id) },
-      {
-        populate: ["language"],
-      }
+      { teacher_id: parseInt(req.params.id), language: parseInt(req.params.language)  },
     );
     res.send(lessons);
   })
 
-  // add new lesson for a teacher
+  // teachers use to create new lesson type
   .post("/newlesson", passport.authenticate("jwt", { session: false }), async (req, res) => {
     if (req.user!.role === UserRole.Teacher) {
       const { title, price }: AuthenticationDto = req.body;
@@ -55,52 +41,44 @@ lessonRouter
       res.send(lesson);
     }
     return res.sendStatus(403);
-  });
+  })
 
-// list all booked lessons of a teacher
-/* .get("", async (req, res) => {
-    const teachers = await req.teacherRepository!.findAll({
-      populate: ["languages"],
-    });
-    res.send(teachers);
-  }) */
-
-// get one lesson by id
-/* .get("/:id", async (req, res) => {
-    const teacher = await req.teacherRepository!.findOne(
-      { id: parseInt(req.params.id) },
-      {
-        populate: ["languages"],
+  // teachers use to update lesson type
+  .patch("/update/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    const authUser = req.orm.em.getReference(User, req.user!.id);
+    const teacherid = authUser.id;
+    const id = req.params.id;
+    const { title, price }: AuthenticationDto = req.body;
+    const lesson = await req.lessonRepository!.findOne({ id: parseInt(req.params.id) ,teacher_id: teacherid});
+    if (!lesson) {
+      return res.sendStatus(401);
+    }
+    if (lesson) {
+      const updateCount = await req.lessonRepository?.nativeUpdate({ id }, req.body);
+      if (updateCount) {
+        return res.sendStatus(200);
       }
-    );
-    if (!teacher) {
-      return res.sendStatus(404);
     }
-    res.send(teacher);
-  }) */
+    return res.sendStatus(404);
+  })
 
-/*// endpoint to register new teachers
-  .post("/apply", async (req, res) => {
-    const { username, password, first_name, last_name, is_native, country, type, intro }: AuthenticationDto = req.body;
-    let teacher = await req.teacherRepository!.findOne({ username });
-    if (teacher) {
-      return res.sendStatus(409);
+  // teachers use to delete lesson type
+  .delete("/delete/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    const authUser = req.orm.em.getReference(User, req.user!.id);
+    const teacherid = authUser.id;
+    const id = req.params.id;
+    const lesson = await req.lessonRepository!.findOne({ id: parseInt(req.params.id) ,teacher_id: teacherid});
+    if (!lesson) {
+      return res.sendStatus(401);
     }
-
-    const hashedPassword = await hashPassword(password);
-
-    teacher = new Teacher();
-    wrap(teacher).assign({ ...req.body, password: hashedPassword }, { em: req.orm.em });
-
-    const languages = teacher.languages.getItems();
-    if (languages) {
-      languages.filter((language: number) => language).forEach((language: number) => req.orm.em.merge(language));
+    if (lesson) {
+      const deletedCount = await req.lessonRepository?.nativeDelete({ id });
+      if (deletedCount) {
+        return res.sendStatus(200);
+      }
     }
-
-    await req.teacherRepository!.persistAndFlush(teacher);
-    res.send(teacher);
-    return res.sendStatus(200);
-  })*/
+    return res.sendStatus(404);
+  });
 
 interface AuthenticationDto {
   title: string;

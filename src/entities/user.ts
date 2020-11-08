@@ -51,8 +51,9 @@ export class User {
   @OneToMany(() => Lesson, (lesson) => lesson.teacher)
   lessons = new Collection<Lesson>(this);
 
-  @OneToMany(() => Homework, (homework) => homework.teacher)
+  @OneToMany(() => Homework, (homework) => homework.owner)
   homeworks = new Collection<Homework>(this);
+
 
 }
 

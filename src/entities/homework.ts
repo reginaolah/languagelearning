@@ -7,6 +7,9 @@ export class Homework {
   id!: number;
 
   @Property()
+  uuid!: string;
+
+  @Property()
   name!: string;
 
   @Property()
@@ -19,5 +22,5 @@ export class Homework {
   path_to_solution?: string;
 
   @ManyToOne(() => User)
-  teacher!: User;
+  owner!: User;
 }

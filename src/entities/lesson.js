@@ -13,7 +13,7 @@ exports.Lesson = void 0;
 const core_1 = require("@mikro-orm/core");
 const user_1 = require("./user");
 const language_1 = require("./language");
-const studentlesson_1 = require("../entities/studentlesson");
+const studentlesson_1 = require("./studentlesson");
 let Lesson = class Lesson {
     constructor() {
         this.studentlessons = new core_1.Collection(this);

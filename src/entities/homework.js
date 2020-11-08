@@ -21,6 +21,10 @@ __decorate([
 __decorate([
     core_1.Property(),
     __metadata("design:type", String)
+], Homework.prototype, "uuid", void 0);
+__decorate([
+    core_1.Property(),
+    __metadata("design:type", String)
 ], Homework.prototype, "name", void 0);
 __decorate([
     core_1.Property(),
@@ -37,7 +41,7 @@ __decorate([
 __decorate([
     core_1.ManyToOne(() => user_1.User),
     __metadata("design:type", user_1.User)
-], Homework.prototype, "teacher", void 0);
+], Homework.prototype, "owner", void 0);
 Homework = __decorate([
     core_1.Entity()
 ], Homework);

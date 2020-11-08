@@ -1,5 +1,5 @@
 {
-  "name": "mikroorm-express",
+  "name": "italki-clone",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,12 +17,14 @@
   "dependencies": {
     "@mikro-orm/core": "^4.0.7",
     "@mikro-orm/sqlite": "^4.0.7",
+    "@types/uuid": "^8.3.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@mikro-orm/cli": "^4.0.7",
@@ -48,19 +50,5 @@
       "./src/mikro-orm.config.ts",
       "./dist/mikro-orm.config.js"
     ]
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "test",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }

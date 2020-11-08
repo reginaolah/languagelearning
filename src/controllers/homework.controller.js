@@ -15,6 +15,7 @@ const express_1 = require("express");
 const homework_1 = require("../entities/homework");
 const user_1 = require("../entities/user");
 const passport_1 = require("../security/passport");
+const uuid_1 = require("uuid");
 exports.homeworkRouter = express_1.Router();
 exports.homeworkRouter
     .use((req, res, next) => {
@@ -29,10 +30,10 @@ exports.homeworkRouter
     // add new lesson for a teacher
     .post("/newhomework", passport_1.passport.authenticate("jwt", { session: false }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.user.role === user_1.UserRole.Teacher) {
-        const { name, title, description, path_to_solution } = req.body;
+        const { uuid, name, title, description, path_to_solution } = req.body;
         const homework = new homework_1.Homework();
-        core_1.wrap(homework).assign(req.body, { em: req.orm.em });
-        homework.teacher = req.orm.em.getReference(user_1.User, req.user.id);
+        core_1.wrap(homework).assign(Object.assign(Object.assign({}, req.body), { uuid: uuid_1.v4() }), { em: req.orm.em });
+        homework.owner = req.orm.em.getReference(user_1.User, req.user.id);
         yield req.homeworkRepository.persistAndFlush(homework);
         res.send(homework);
     }

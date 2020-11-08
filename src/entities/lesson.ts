@@ -1,7 +1,7 @@
 import { Collection, Entity, PrimaryKey, Property, ManyToOne, OneToMany } from "@mikro-orm/core";
 import { User } from "./user";
 import { Language } from "./language";
-import { StudentLesson } from "../entities/studentlesson";
+import { StudentLesson } from "./studentlesson";
 
 @Entity()
 export class Lesson {
@@ -23,5 +23,4 @@ export class Lesson {
   @OneToMany(() => StudentLesson, (studentlesson) => studentlesson.lesson)
   studentlessons = new Collection<Lesson>(this);
 
-  
 }

@@ -86,7 +86,7 @@ __decorate([
     __metadata("design:type", Object)
 ], User.prototype, "lessons", void 0);
 __decorate([
-    core_1.OneToMany(() => homework_1.Homework, (homework) => homework.teacher),
+    core_1.OneToMany(() => homework_1.Homework, (homework) => homework.owner),
     __metadata("design:type", Object)
 ], User.prototype, "homeworks", void 0);
 User = __decorate([
