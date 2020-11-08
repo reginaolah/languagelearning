@@ -1,0 +1,15 @@
+jobs:
+  include:
+  - language: node_js
+    node_js: node
+    cache:
+      directories:
+      - node_modules
+    after_success: npm build
+    deploy:
+      skip_cleanup: true
+      provider: heroku
+      api_key:
+          secure: k9aew3kWrkKfiSfdnhGdl5USm8V5lZwpZn8u2ICjOfdMKjsuA3re4ZXOlJdGdiZgPtV3Iv2FLY2SQOqHOEMxRm2GisWPDyI8SbG/3Whle+I++gvrcQuYHndd2vJirPui6VwETXasrGqSrfEY1AsS1QkVX2WC4LFop4weyZvOVi3WwzPpx0f7MWOWgwYRTRHGRm3sCcg5wPS75WVtGQuFaxl7GyK6PXqF3vs9q/Fti4+CgtkUtk7oNjcmaBhHF+gC0h3frf01Lfey5Sy5uFxtz76jLnjtB9ZWfFxwMFQcRyKD8edo57lrra+bjt8JLr+D60daFWOnI15GfNZIxenOHdFFt89jAwlJCEaTIW0Qb29v7GM2emSrDpgXt0r6XIksV1G5ys9Y5XnRC5Q26iMVxGCp8e2+KRwVlcKwhHWjw0j8P8Wpur0Y10/jsSqP+oTUZDIYYxC2BvEFNd9ZeHKx7dgJvgL3K2lM7fJdV0HRboA4TRimAQh8juH9Nbg4YmZWmosf3awaTjKTqIjk5lKgddFLy7vZsnWpsDdVQvmT4iF2Ll4z+DCXWXen8jCYCPomXJMqHe+GuJNVB+pbdh2jyti4d7HBhEULmtxQwOmItEeqovnaAbKnkKfqmSDy4F8l8PM8YL5F0vdyMWO80BzXFNo7zKXdqQKSfw0qolNYGN4=
+        app: languagelearningplatform
+      on: master
