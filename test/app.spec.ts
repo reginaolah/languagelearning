@@ -2,7 +2,7 @@ import { app } from '../src/server';
 import supertest from 'supertest';
 
 describe('Language Learning Platform', () => {
-  const user = { username: 'user', password: 'password', role: 'STUDENT', first_name:'user', last_name:'user'};
+  const user = { username: 'user', password: 'password', first_name:'regina', last_name:'olah', role: 'STUDENT'};
 
   let requestHandle: supertest.SuperTest<supertest.Test>;
 
