@@ -98,7 +98,7 @@ userRouter
     }
 
     await req.userRepository!.persistAndFlush(user);
-    return res.send(user);
+    res.send(user);
   })
 
   // endpoint to sign in user
