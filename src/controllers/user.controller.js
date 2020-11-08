@@ -72,7 +72,7 @@ exports.userRouter
     let user = yield req.userRepository.findOne({ username });
     // check if user exists
     if (user) {
-        return res.sendStatus(409);
+        res.sendStatus(409);
     }
     const hashedPassword = yield password_utils_1.hashPassword(password);
     user = new user_1.User();
@@ -86,8 +86,8 @@ exports.userRouter
         lessons.filter((lesson) => lesson).forEach((lesson) => req.orm.em.merge(lesson));
     }
     yield req.userRepository.persistAndFlush(user);
-    //res.send(user);
-    return res.sendStatus(200);
+    res.send(user);
+    //return res.sendStatus(200);
 }))
     // endpoint to sign in user
     .post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function* () {

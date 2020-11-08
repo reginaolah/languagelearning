@@ -79,7 +79,7 @@ userRouter
 
     // check if user exists
     if (user) {
-      return res.sendStatus(409);
+      res.sendStatus(409);
     }
 
     const hashedPassword = await hashPassword(password);
@@ -98,8 +98,8 @@ userRouter
     }
 
     await req.userRepository!.persistAndFlush(user);
-    //res.send(user);
-    return res.sendStatus(200);
+    res.send(user);
+    //return res.sendStatus(200);
   })
 
   // endpoint to sign in user
