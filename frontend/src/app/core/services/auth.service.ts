@@ -16,7 +16,7 @@ import { NotificationService } from './notification.service';
 @Injectable()
 export class AuthService {
  
-  /*
+  
   private ns: NotificationService;
   isSignin$ = new BehaviorSubject<boolean>(this.hasToken()); //TODO: hasToken()...
      
@@ -25,9 +25,11 @@ export class AuthService {
       return this.isSignin$.asObservable();
     }
 
+    signup(user: User ):void {
+      this.ns.show('Sikeres registráció!');
+    }
     
     signin(user: User ):void {
-      console.log('bejelentkezes proba');
       localStorage.setItem('token', 'fsdghjfadfsgkoptiwearwer');
       
       this.isSignin$.next(true);
@@ -35,13 +37,17 @@ export class AuthService {
       //TODO
     }
     
- */
+/*
 
-  private ns: NotificationService;
-  private http: HttpClient;
+
   isSignin$ = new BehaviorSubject<boolean>(this.hasToken()); //TODO: hasToken()...
   
-    constructor() {}
+    constructor(
+      private http: HttpClient,
+      private ns : NotificationService
+    ) {
+      
+    }
     isSignedIn():Observable<boolean>{
       return this.isSignin$.asObservable();
     }
@@ -53,10 +59,11 @@ export class AuthService {
           'Authorization': ''
         }),
       }
-      this.http.post(`${baseUrl}/signin`, user, httpOptions).subscribe(
+      
+      this.http.post(`${baseUrl}/users/signin`, user, httpOptions).subscribe(
         data => {
           console.log(data); // TODO: Use TOKEN from the data POST response.
-          localStorage.setItem('token', 'A223wedw34w');
+          localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInJvbGUiOiJTVFVERU5UIiwiaWF0IjoxNjA1OTkwNTcyfQ.39U7bS9VwKa8_tAc7nX-lmxUtf9KhyaeiaR65_DlSME');
           this.isSignin$.next(true);
           this.ns.show('Sikeres bejelentkezés!');
         },
@@ -66,7 +73,7 @@ export class AuthService {
         }
       );
     }
-    
+    */
 
     signout():void {
       localStorage.removeItem('token');

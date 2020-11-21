@@ -18,6 +18,9 @@ lessonRouter
     const lessons = await req.lessonRepository!.find(
       { teacher_id: parseInt(req.params.id), language: parseInt(req.params.language)  },
     );
+    if(!lessons){
+      res.sendStatus(404);
+    }
     res.send(lessons);
   })
 
@@ -50,16 +53,13 @@ lessonRouter
     const id = req.params.id;
     const { title, price }: AuthenticationDto = req.body;
     const lesson = await req.lessonRepository!.findOne({ id: parseInt(req.params.id) ,teacher_id: teacherid});
-    if (!lesson) {
-      return res.sendStatus(401);
-    }
     if (lesson) {
       const updateCount = await req.lessonRepository?.nativeUpdate({ id }, req.body);
       if (updateCount) {
-        return res.sendStatus(200);
+        return res.send(lesson);
       }
     }
-    return res.sendStatus(404);
+    return res.sendStatus(500);
   })
 
   // teachers use to delete lesson type
@@ -68,16 +68,13 @@ lessonRouter
     const teacherid = authUser.id;
     const id = req.params.id;
     const lesson = await req.lessonRepository!.findOne({ id: parseInt(req.params.id) ,teacher_id: teacherid});
-    if (!lesson) {
-      return res.sendStatus(401);
-    }
     if (lesson) {
       const deletedCount = await req.lessonRepository?.nativeDelete({ id });
       if (deletedCount) {
         return res.sendStatus(200);
       }
     }
-    return res.sendStatus(404);
+    return res.sendStatus(500);
   });
 
 interface AuthenticationDto {

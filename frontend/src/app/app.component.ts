@@ -14,7 +14,7 @@ import { NotificationService } from './core/services/notification.service';
 })
 
 export class AppComponent implements OnInit {
-
+  
   ngOnInit(): void {
    this.filteredOptions = this.myControl.valueChanges.pipe(
      startWith(''), 

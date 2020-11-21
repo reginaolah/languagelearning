@@ -7,10 +7,10 @@ import { passport } from "../security/passport";
 
 export const routes = Router();
 
-routes.use('/users', userRouter);
-routes.use('/lessons', lessonRouter);
-routes.use('/homeworks', homeworkRouter);
-routes.use('/studentlessons', studentlessonRouter);
+routes.use("/users", userRouter);
+routes.use("/lessons", lessonRouter);
+routes.use("/studentlessons", passport.authenticate("jwt", { session: false }), studentlessonRouter);
+routes.use("/homeworks", passport.authenticate("jwt", { session: false }), homeworkRouter);
 
 //routes.use('/issues', passport.authenticate('jwt', { session: false }), issuesRouter);
 

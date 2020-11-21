@@ -12,7 +12,7 @@ export class Language {
   language_code!: string;
 
   @Property()
-  langauge!: string;
+  language!: string;
 
   @ManyToMany(() => User, user => user.languages)
   users = new Collection<User>(this);

@@ -4,6 +4,6 @@ module.exports = {
     coveragePathIgnorePatterns: ['/node_modules/'],
     transform: {
       '^.+\\.ts$': 'ts-jest',
-    }
+    
+    },
   };
-  

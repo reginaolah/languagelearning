@@ -16,6 +16,9 @@ export class User {
   password!: string;
 
   @Property()
+  email!: string;
+
+  @Property()
   first_name!: string;
 
   @Property()

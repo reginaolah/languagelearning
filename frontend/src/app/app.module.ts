@@ -20,9 +20,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import { AppRoutingModule } from './app-routing.module';
+import {MatRadioModule} from '@angular/material/radio'; 
 
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { TeachersCardComponent } from './teachers-card/teachers-card.component';
 import { StudentCardComponent } from './student-card/student-card.component';
@@ -35,7 +37,8 @@ import { LessonComponent } from './lessons/lesson/lesson.component';
 @NgModule({
 	declarations: [
 		AppComponent,
-    SigninComponent,
+	SigninComponent,
+	SignupComponent,
     MenuComponent,
     TeachersCardComponent,
     StudentCardComponent,
@@ -65,7 +68,8 @@ import { LessonComponent } from './lessons/lesson/lesson.component';
 		MatExpansionModule,
 		MatSnackBarModule,
 		AppRoutingModule,
-		MatAutocompleteModule
+		MatAutocompleteModule,
+		MatRadioModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
