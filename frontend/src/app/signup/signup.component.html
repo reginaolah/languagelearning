@@ -1,0 +1,73 @@
+<app-menu></app-menu>
+<div class="signupForm" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="30">
+        <mat-toolbar color="primary">Sign up</mat-toolbar>
+        <form [formGroup]="signupForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signup(signupForm)" ovalidate>            
+            <mat-form-field>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Username"
+                    color="primary"
+                    formControlName="username"
+                    required
+                >
+                <mat-error>Please provide a username!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="E-mail"
+                    color="primary"
+                    formControlName="email"
+                    required
+                >
+                <mat-error>Please provide an e-mail address!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="First name"
+                    color="primary"
+                    formControlName="first_name"
+                    required
+                >
+                <mat-error>Please provide your first name!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Last name"
+                    color="primary"
+                    formControlName="last_name"
+                    required
+                >
+                <mat-error>Please provide your last name!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input
+                    matInput
+                    type="password"
+                    placeholder="Password"
+                    color="primary"
+                    formControlName="password"
+                    required
+                >
+                <mat-error>Please provide a password!</mat-error>
+            </mat-form-field>
+           
+            <mat-radio-group >
+                <mat-radio-button class="selectOneBtn" value="STUDENT">Student</mat-radio-button>
+                <mat-radio-button value="TEACHER">Teacher</mat-radio-button>
+            </mat-radio-group>
+            <button mat-raised-button color="primary">Sign up</button>
+        </form>
+    </mat-card>
+</div>

@@ -1,4 +1,2 @@
-[1122/122233.811:ERROR:process_reader_win.cc(123)] NtOpenThread: {Hozzáférés megtagadva} A folyamat hozzáférést kért egy objektumhoz, de ehhez nem volt engedélye. (0xc0000022)
-[1122/122233.851:ERROR:exception_snapshot_win.cc(99)] thread ID 13692 not found in process
-[1122/131257.093:ERROR:process_reader_win.cc(123)] NtOpenThread: {Hozzáférés megtagadva} A folyamat hozzáférést kért egy objektumhoz, de ehhez nem volt engedélye. (0xc0000022)
-[1122/131257.119:ERROR:exception_snapshot_win.cc(99)] thread ID 15804 not found in process
+[1122/074135.005:ERROR:directory_reader_win.cc(43)] FindFirstFile: A rendszer nem találja a megadott elérési utat. (0x3)
+[1122/153459.365:ERROR:directory_reader_win.cc(43)] FindFirstFile: A rendszer nem találja a megadott elérési utat. (0x3)

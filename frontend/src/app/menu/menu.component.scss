@@ -1,0 +1,68 @@
+.spacer {
+    flex: 1;
+  }
+  
+  .toolbar {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    background-color: rgba(92, 92, 92, 0);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .sticky{
+      background-color: rgba(92, 92, 92, 0.2);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      height:80px;
+      color:white;
+      display: flex;
+      position: fixed;
+      overflow: hidden;
+      z-index: 10;
+      width: 100%;
+  }
+  
+  .stickywhite{
+      background-color: white;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      color:black;
+      display: flex;
+      position: fixed;
+      overflow: hidden;
+      z-index: 10;
+      width: 100%;
+  }
+  
+ 
+
+.whitelogo {
+ background-image: url('/assets/italki_logo2.png');
+ width: 75px;
+ height:50px;
+ display: flex;
+ margin-left:20px;
+ cursor: pointer;
+
+}
+
+.transparentlogo {
+ background-image: url('/assets/italki-transp-logo.png');
+ width: 75px;
+ height:50px;
+ border:0;
+ margin-left:20px;
+ cursor: pointer;
+}
+
+
+.button:hover{
+    background-color: rgb(255, 255, 255);
+   }
+

@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<div class="container" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="30">
+        <mat-toolbar color="primary">Signin</mat-toolbar>
+        <form [formGroup]="signinForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signin(signinForm)" ovalidate>            
+            <mat-form-field>
+                <input
+                    matInput
+                    type="text"
+                    placeholder="Username"
+                    color="primary"
+                    formControlName="username"
+                    required
+                >
+                <mat-error>Please provide a username!</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
+                    type="password"
+                    placeholder="Password"
+                    color="primary"
+                    formControlName="password"
+                    required
+                >
+                <mat-error>Please provide a password!</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Sign in</button>
+        </form>
+    </mat-card>
+</div>
