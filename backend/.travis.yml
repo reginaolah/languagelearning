@@ -1,6 +1,7 @@
 jobs:
   include:
   - language: node_js
+    before_install: cd backend
     node_js: node
     cache:
       directories:
