@@ -17,10 +17,11 @@ jobs:
       on: main
 
   - language: node_js
-
+   
+    sudo: true
     dist: trusty
     
-    before_install: cd backend
+    before_install: cd frontend
     cache:
       directories:
         - node_modules
@@ -31,7 +32,7 @@ jobs:
     script:
       - npm run test:headless
       - npm run build
-      
+      - xvfb-run npm run e2e
     deploy:
       skip_cleanup: true
       provider: heroku
