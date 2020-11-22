@@ -17,22 +17,15 @@ jobs:
       on: main
 
   - language: node_js
-   
-    sudo: true
-    dist: trusty
-    
-    before_install: cd frontend
-    cache:
-      directories:
-        - node_modules
-
-    addons:
-      chrome: stable
-
-    script:
-      - npm run test:headless
-      - npm run build
-      - xvfb-run npm run e2e
+    node_js: node
+    before_install:
+    - npm install -g @angular/cli
+    install: npm install
+    branches:
+      only:
+      - master
+    after_script:
+    - chmod +x publish-gh-pages.sh && ./publish-gh-pages.sh
     deploy:
       skip_cleanup: true
       provider: heroku
