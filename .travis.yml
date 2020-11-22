@@ -22,11 +22,8 @@ jobs:
       directories:
         - node_modules
     before_install: cd frontend
-    before_script:
-        - "export DISPLAY=:99.0"
     addons:
         chrome: stable
-        firefox: stable
     after_success: npm build
     deploy:
       skip_cleanup: true
