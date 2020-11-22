@@ -22,6 +22,8 @@ jobs:
       directories:
         - node_modules
     before_install: cd frontend
+    script:
+        - npm run test-headless
     after_success: npm build
     deploy:
       skip_cleanup: true
