@@ -31,7 +31,7 @@ jobs:
     script:
       - npm run test:headless
       - npm run build
-      - xvfb-run npm run e2e
+      
     deploy:
       skip_cleanup: true
       provider: heroku
