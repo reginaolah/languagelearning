@@ -21,7 +21,7 @@ jobs:
     cache:
       directories:
         - node_modules
-    before_install: cd server-typescript-issuetracker-restapi
+    before_install: cd frontend
     after_success: npm build
     deploy:
       skip_cleanup: true
