@@ -28,7 +28,7 @@ jobs:
     before_script:
     - npm install -g @angular/cli
     script:
-    - heroku-postbuild: ng build --prod --base-href [base_url]
+    - ng build --prod --base-href [base_url]
     deploy:
       skip_cleanup: true
       provider: heroku
