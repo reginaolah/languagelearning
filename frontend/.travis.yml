@@ -5,12 +5,18 @@ jobs:
     cache:
       directories:
       - node_modules
-    before_install: cd backend
-    after_success: npm build
+    branches:
+      only:
+      - master
+    before_script:
+    - npm install -g @angular/cli
+    script:
+    - ng build --prod --base-href [base_url]
     deploy:
       skip_cleanup: true
       provider: heroku
+      local_dir: dist/frontend
       api_key:
         secure: "JEBUIcoE6FfzKQV1J5Rbv6QaHdvJWi2e6JmPkoWt5WCKk6CIRQMrXUJuSGcut8GVJbvq7b2GJQly8M2IHy026xIRkH+OHMauZX6czseRZMcdnNK0dGBDVs5gHOM9+Gc237J6zWfOT8YsL4DNdLA8NxbLxgmFlQ2Pb2tpl9oGop9ipfceb5Auq/l/kWE2TtMjiKZa4P1scyq9TG3WBLO133EGhNyxhA+/3RnchEkM8gOSbL72i8mto/HgBmfIA2KgnqFQTaaJhj9IfR7Zgyw/l+3Ro/lITNhvn/aCRY4Xdksnwxff6O+E2P9W16EZcBr9YAzpQUOaj7feIx9Z7TwpffksEBsfrpSDphKKEJubYOzICGCJ5Dxh6KG02dXc2Oe0QsosQu8qGBvn5Lx1CUucpmi0blyLYCS3CSBfNTH+9kKjZxOLJDuVWwqzY3fMLt6/eVeLKMGiANXKGmZor3OBygDIrusEvZcQbo9SGeINboI6NAxTEP3mJa9wZOAMuXMOc5aTuLIQuHWrf6q5Uz3YE7qyOMKpbZYnOj0lXSKiscGXcqXgS++UPLNmXrEv7W68rPainq1apdLraGGUQM/K+VLABS4zI3Y3b0XAnjqb/bYibgKbo9tf5C2kSC4akhxKhH+f0esSnuweQh5sl7dprDIqK08hQOvz3O/ysjKMcLg="
-      app: languagelearningapp
+      app: languagelearningfrontend
       on: main
