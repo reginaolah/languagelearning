@@ -1,2 +1,2 @@
 # frontend/Procfile
-web: node dist/index.js
+web: node server.js
