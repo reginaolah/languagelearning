@@ -1,2 +1,2 @@
 # Procfile
-web: node server.js
+web: npm run build && node dist/index.js
