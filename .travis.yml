@@ -12,6 +12,7 @@ jobs:
     - npm install -g @angular/cli
     script:
     - ng build --prod
+    
     deploy:
       skip_cleanup: true
       provider: heroku
