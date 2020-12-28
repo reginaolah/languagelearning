@@ -28,15 +28,12 @@ jobs:
     branches:
       only:
       - master
-      
-    before_install:
-    - cd frontend
     
     before_script:
+    - cd frontend
     - npm install -g @angular/cli
 
     script:
-    - ng lint
     - npm run test-headless
     - ng build --prod --base-href [base_url]
   
