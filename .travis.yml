@@ -1,48 +1,39 @@
 jobs:
   include:
-
   - language: node_js
     node_js: node
     cache:
       directories:
-        - node_modules
+      - node_modules
     before_install: cd backend
     after_success: npm build
     deploy:
       skip_cleanup: true
       provider: heroku
       api_key:
-         secure: ui7q9vJGNXjUGNxIuIIu+Wj7axgMSbb8DkcL6JnN0c1EtaqqHg4tAR68xJa7vVm6Ifft6k/9NbWmBHoSe3QVxdJNz2aqBt2Cdnnoc0GdxgVT6YO6JjEjtxk+sFvoMIM/r0ezYsDlBsZo9LmbuTftjTjtOpRADgi6GupymxFcf7R8BFkx91I5JsS7G3jeNQWykcsSLO9i3803gB2+u9BQbSv+pk5QKTb7cxGz3mhoUbPxHKgztPOgkeeAa32lM6bGivF6Ht4AasfSVrDARe9da1cqqDNr27wRaT+8kpfjfHVqho77MceDPOXeFObM4IATs3pcfb+4CQo6sJYKXpx9QEab4TtYLrWb3g7s/Tg/zo1ltStAACC9r0w8gT0JURAulo3fAFIbqZRZPSPrZ36YZsiMmIu7C6jiGSJ+9Elp5QzdGCT8JItzsNZvv0PuK897B83evmGGPzCjEK27bo1I1IF6alwfk9QrW5pehGSPVLFsTAvdJ9mOQqHQ3hzRwhLOmACJHwRB0DKGj5l27jdxMWYZvZK/XJ3Q9Ml4hTSc0aluXoU345/B/8n7w6/XiAIgnj0UDFLcp9yG1icsumq3GgolMA03bZ5CGUoWjb6iC0ClIcabuLime+HSz54HpD66mNtre3JXddaLPiQpSDOqyLJj0xLR6g3T9pmhW+O+qiU=
-         app: languagelearningapp
+        secure: swQ42X905uI45l1oTJnefV3NqtWIhjejYGc1Kosyl+SKl3Nf3DUEKLAsojt7wviaLDdu8jUhko33fy+WkoQ7FRmoEEo+QdZ3Psnb0oF3MfE/bv4M0w9Yg726UDzoxnqFl6KbO1VUgIjF3SGeIO27NSqd0pVD8WfqzTzWz/NqTwTJ3F5ereP3sUVTve7q2Hi1oKbOiKmnFtKVa+AyCYEb4uGdcoMZeYlKYR0XNycVahwLL3JUMIPREXHJdLKzRSE7lKMb+QoPy5UrzpP6JPSMTc9wEnuZFBO+9s7mNg8xO9ebaCbMk4/4Q8eJdxM2ufeueHIJc9gb4jacf+k3szBDDXjjUACbffPLdL9kN8hdxMPJgK4wwUKmA/uPcl7tXTTKEz9N9AT4g7HoDt7fk6CCDRNDF4CsDNKGVVAC8IuGNeYW2etUpF6ybsSHRIoaC6DvgdEPwxZQyhH1W9S3yrkJoG+keduo20aveawlIvuMMyFT/haf+ndU/l62gtHP2/16ZCH4jCLqbAtcw38Rm7w9Z9Xi18EGPfRy/x5SVn3OeLapt/VxavB4bteRCTRkTtj1lafkBjNI0PjmfAqDDLKzd46LXyGY8MykxB9Rd79OhGKro0/v7FKyp0QVj2QrUPcTr1bRM6coHWYe3Bp5dZoQ2lM3In9rI0A3GG+486I5cfk=
+        app: languagelearningapp
       on: main
-
+      
   - language: node_js
-  
-  
     node_js: node
-    
     cache:
       directories:
-        - node_modules
-        
+      - node_modules
     branches:
       only:
       - master
-      
     before_install:
     - cd frontend
-    
     before_script:
     - npm install -g @angular/cli
-
     script:
     - ng build --prod --base-href [base_url]
-  
     deploy:
       skip_cleanup: true
       provider: heroku
       local_dir: dist/frontend
       api_key:
-         secure: ui7q9vJGNXjUGNxIuIIu+Wj7axgMSbb8DkcL6JnN0c1EtaqqHg4tAR68xJa7vVm6Ifft6k/9NbWmBHoSe3QVxdJNz2aqBt2Cdnnoc0GdxgVT6YO6JjEjtxk+sFvoMIM/r0ezYsDlBsZo9LmbuTftjTjtOpRADgi6GupymxFcf7R8BFkx91I5JsS7G3jeNQWykcsSLO9i3803gB2+u9BQbSv+pk5QKTb7cxGz3mhoUbPxHKgztPOgkeeAa32lM6bGivF6Ht4AasfSVrDARe9da1cqqDNr27wRaT+8kpfjfHVqho77MceDPOXeFObM4IATs3pcfb+4CQo6sJYKXpx9QEab4TtYLrWb3g7s/Tg/zo1ltStAACC9r0w8gT0JURAulo3fAFIbqZRZPSPrZ36YZsiMmIu7C6jiGSJ+9Elp5QzdGCT8JItzsNZvv0PuK897B83evmGGPzCjEK27bo1I1IF6alwfk9QrW5pehGSPVLFsTAvdJ9mOQqHQ3hzRwhLOmACJHwRB0DKGj5l27jdxMWYZvZK/XJ3Q9Ml4hTSc0aluXoU345/B/8n7w6/XiAIgnj0UDFLcp9yG1icsumq3GgolMA03bZ5CGUoWjb6iC0ClIcabuLime+HSz54HpD66mNtre3JXddaLPiQpSDOqyLJj0xLR6g3T9pmhW+O+qiU=
-         app: languagelearningfrontend
+        secure: swQ42X905uI45l1oTJnefV3NqtWIhjejYGc1Kosyl+SKl3Nf3DUEKLAsojt7wviaLDdu8jUhko33fy+WkoQ7FRmoEEo+QdZ3Psnb0oF3MfE/bv4M0w9Yg726UDzoxnqFl6KbO1VUgIjF3SGeIO27NSqd0pVD8WfqzTzWz/NqTwTJ3F5ereP3sUVTve7q2Hi1oKbOiKmnFtKVa+AyCYEb4uGdcoMZeYlKYR0XNycVahwLL3JUMIPREXHJdLKzRSE7lKMb+QoPy5UrzpP6JPSMTc9wEnuZFBO+9s7mNg8xO9ebaCbMk4/4Q8eJdxM2ufeueHIJc9gb4jacf+k3szBDDXjjUACbffPLdL9kN8hdxMPJgK4wwUKmA/uPcl7tXTTKEz9N9AT4g7HoDt7fk6CCDRNDF4CsDNKGVVAC8IuGNeYW2etUpF6ybsSHRIoaC6DvgdEPwxZQyhH1W9S3yrkJoG+keduo20aveawlIvuMMyFT/haf+ndU/l62gtHP2/16ZCH4jCLqbAtcw38Rm7w9Z9Xi18EGPfRy/x5SVn3OeLapt/VxavB4bteRCTRkTtj1lafkBjNI0PjmfAqDDLKzd46LXyGY8MykxB9Rd79OhGKro0/v7FKyp0QVj2QrUPcTr1bRM6coHWYe3Bp5dZoQ2lM3In9rI0A3GG+486I5cfk=
+        app: languagelearningfrontend
       on: main
