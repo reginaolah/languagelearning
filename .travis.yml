@@ -17,19 +17,29 @@ jobs:
       on: main
 
   - language: node_js
+  
+  
     node_js: node
+    
+     branches:
+      only:
+      - main
+      
     before_install:
     - cd frontend
+    
+    before_script:
     - npm install -g @angular/cli
-    install: npm install
-    branches:
-      only:
-      - master
-    after_script:
-    - chmod +x publish-gh-pages.sh && ./publish-gh-pages.sh
+
+    script:
+    - ng lint
+    - npm run test-headless
+    - ng build --prod --base-href [base_url]
+  
     deploy:
       skip_cleanup: true
       provider: heroku
+      local_dir: dist/frontend
       api_key:
          secure: DwLtMqCyTgFLFvdlGbFS569ThlGm0LoHDkPVkin4ECxg+6vxvgbpJNeRKmUdc3y7bVC6TUD3n9on1ugvTgXr+l50gn0XNUgxQYIDD8F5PCfVN3LJLUlrUqU59kt8Z+/emQZoSu3uBtB7oXQFiHjTATNxmWxVYougNTq4nNrjwFNUNCn2xaowgPwfRy3DRS/1QB0sAKkNEjlC5xLkMjDlRmw6Y4zKxxGoernq+CvMhEyP+6iqtRu/hd/MA0uUwgmuldsgcRVEaG3VKsLRWDL9JjyHQBsqc5Jqyx0jCdTMkbGbG695AkolsMDBE2Nelq3xrjJQ7kIHyV22IHJYsLN6ln3ij8U2Ft4OLcitHZuHpK6U2QHgdPhR7Xzk/eS0Bu2rGELZ81ITqK8AIKCgpaa2Cr+/FcdgXw86BX7Td5XhL/Wm1EDaGxQXf2pHaMkGh4vJ0y3S88yEqTBRKjuJOGAJzIdSI2ka1pUXXR4Pi6br4NLfkALKVJ9KkmJLTQqhHyf7hBLvew/UOAdzvaB9FR/CM68vB2wVvPTMA6GI6KSee2NbaV/YQP0fmJM+W+AthAauSYKjuFEXYIZWoVPaxJsvxEPFy5bc61xPzVmKj8kNJ4lh/lNVCP0spUgEGDI+THxp7P74hC7dnjgFPz7elHVRUbpCpJkLZxaI9bLwjXKakkQ=
       app: languagelearningfrontend
