@@ -21,9 +21,13 @@ jobs:
   
     node_js: node
     
-     branches:
+    cache:
+      directories:
+        - node_modules
+        
+    branches:
       only:
-      - main
+      - master
       
     before_install:
     - cd frontend
