@@ -1,56 +1,27 @@
-# Language learning platform ( Italki clone ) [![Build Status](https://travis-ci.org/barnabaskocsis/Language-learning-platform.svg?branch=main)](https://travis-ci.org/barnabaskocsis/Language-learning-platform) 
-Beadandó feladat a 2020/2021/1 félévben meghirdetett Full stack webprogramozás tárgyhoz. A beadandó feladat keretei között egy nyelvi tanulást elősegítő applikáció kerül elkészítésre, ahol tanulók tudnak órákat venni különböző nyelveken tanároktól. Az feladat az [italki](https://www.italki.com/) nevezetű webes applikáció egy lightweight változatát készül megvalósítani.
+# Frontend
 
-### A new wiki page is avaiable for the application,check it out here: [Wiki](https://github.com/barnabaskocsis/Language-learning-platform/wiki)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
-### Heroku has been set up, you can reach it from here: http://italkiclone.herokuapp.com/
+## Development server
 
-## Feladat funkcionális követelményei:
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-  - Alkalmazás:
-    - Lehet regisztrálni az alkalmazásba
-    - Ki/be lehet jelentkezni
-    - A regisztrált felhasználók rendelkeznek egy profillal
+## Code scaffolding
 
-  - Tanuló:
-    - Van lehetősége nyelvet választani
-    - Tanulóként lehet szűrni a tanárok között különböző szempontok alapján
-    - Tud órákat foglalni
-    - Van egy felület kommunikálni a tanárral
-    - Beadhat megoldásokat házikra
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-  - Tanár:
-    - A tanárok naptárjaikban jelezhetik mikor érnek rá órát tartani
-    - A tanárok feltölthetnek fájlokat 
-    - A tanárok kiírhatnak házikat és javíthatják őket
+## Build
 
-## Feladat nem funkcionális követelményei:
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-  - Megbízhatóság érdekében a REST végpontok tesztelésre kerülnek
-  - Autentikáció és autorizáció a hitelesítés és biztonság érdekében
-  - Az alkalmazás kinézete igényes és több böngészőt is támogat
-  - Technológiai megszorítások:
-      * Az adatbázis: **SQLite**
-      * A szerveroldali **REST API typescript** nyelven íródik, **Node.js** alatt és **Express** keretrendszerben
-      * A kliensoldal **Angular** keretrendszerben készül
+## Running unit tests
 
-## Szakterületi fogalomjegyzék:
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-  - **SQLite**: A SQLite egy önálló, kisméretű, ACID-kompatibilis relációs adatbázis-kezelő rendszer és adatbázismotor.
-  - **REST(Representational State Transfer)**: Egy szoftverarchitektúra típus, erőforrások elérésének módja HTTP protokoll szemantikájára építve.
-  - **API(Application Programming Interface)**: Egy rendszer azon szolgáltatásainak és használatának dokumentációja, amelyet mások felhasználhatnak.
-  - **Angular**: Typescript alapú nyílt-forráskódú keretrendszer webes applikációk készítéséhez MVC architektúrában.
-  - **MVC(Model-View-Controller)**: Architektúrális minta, amely jól elhatárolja a modell, nézet és vezerlő komponenseket.
+## Running end-to-end tests
 
-## Szerepkörök
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-  - Vendég: Azonosítatlan felhasználó korlátozott jogokkal, csak a publikus oldalat éri.
-  - Bejelentkezett felhasználó:
-    * **Tanuló**: profillal rendelkezik és hozzáfér az oldal tanulóknak szánt funkcióihoz
-    * **Tanárok**: profillal rendelkezik és hozzáfér az oldal tanároknak szánt funkcióihoz
-    * **Admin**: törölhet regisztrált felhasználókat
-    
-# Fejlesztők:
+## Further help
 
-  - Oláh Regina Ildikó Y3WIW6
-  - Kocsis Barnabás Péter HM02MI
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
