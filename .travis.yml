@@ -12,7 +12,7 @@ jobs:
       provider: heroku
       api_key:
         secure: "pI8l/+pUtjAi4wrFRZhmS5cDAkbB/68vOMYm39yO3w3aoXJMkAV2wV5RpqVH8ZzHnEXC+IotbTtE3SmKWS19/6JmkEqVQe2hkX3w6qxCKqt8Ei+TFZgGNXECqFuyRYPo0uP9jLg9MqOi0KlUj6VInyJmQqYc3uSojCr3GXi9rqUHMX13yC/ZcjSSe5ProkVV672kiQ41NeI2Cx68LdOf/emrg6ztUrPWBRBzF9B0HIoZZwA58KlZa7VhkmVcq/+4nMRChFWQrnWsvEj08Ay8ho42vzqxKLPZcuHfvWmvo1kEdsGb+9+QTtuigZY8zQwvVmfcEyqnuPpPYgojbMq+Xwj6oXwmbYk5u8o1FLTgcctji6RbD6aCLOE1PU/vrD6AGMYUHycDKHmV+7MdevX4UvVWou9wnaoR/6L+XbCE5pemmnXP5nLYqXQeySP9HUEYFVfRihPMuTjLqW7aZWjW6t9HeTIb4/zYPNmQ84mWc22lPIeBZUgH9sgs+1meBK4PiiX0PO2uU5nkQA+Hx+kNfhS1GZ9msr0hM/V1BrmQkZYvZ360lBvX8uGsTRlDlUK9SMG+p98kqjc6kgVKJAhNE812FgNRMjK8rUzrwC1NKsW4xuePpJ7PaWKNz/4mg0Kqh7eIqGVI/+CO6SHH0Lro6K0ONXwdMrwtOc3TWPf3Umo="
-        app: languagelearningapp
+      app: languagelearningapp
       on: main
       
   - language: node_js
@@ -35,5 +35,5 @@ jobs:
       local_dir: dist/frontend
       api_key:
         secure: "pI8l/+pUtjAi4wrFRZhmS5cDAkbB/68vOMYm39yO3w3aoXJMkAV2wV5RpqVH8ZzHnEXC+IotbTtE3SmKWS19/6JmkEqVQe2hkX3w6qxCKqt8Ei+TFZgGNXECqFuyRYPo0uP9jLg9MqOi0KlUj6VInyJmQqYc3uSojCr3GXi9rqUHMX13yC/ZcjSSe5ProkVV672kiQ41NeI2Cx68LdOf/emrg6ztUrPWBRBzF9B0HIoZZwA58KlZa7VhkmVcq/+4nMRChFWQrnWsvEj08Ay8ho42vzqxKLPZcuHfvWmvo1kEdsGb+9+QTtuigZY8zQwvVmfcEyqnuPpPYgojbMq+Xwj6oXwmbYk5u8o1FLTgcctji6RbD6aCLOE1PU/vrD6AGMYUHycDKHmV+7MdevX4UvVWou9wnaoR/6L+XbCE5pemmnXP5nLYqXQeySP9HUEYFVfRihPMuTjLqW7aZWjW6t9HeTIb4/zYPNmQ84mWc22lPIeBZUgH9sgs+1meBK4PiiX0PO2uU5nkQA+Hx+kNfhS1GZ9msr0hM/V1BrmQkZYvZ360lBvX8uGsTRlDlUK9SMG+p98kqjc6kgVKJAhNE812FgNRMjK8rUzrwC1NKsW4xuePpJ7PaWKNz/4mg0Kqh7eIqGVI/+CO6SHH0Lro6K0ONXwdMrwtOc3TWPf3Umo="
-        app: languagelearningfrontend
+      app: languagelearningfrontend
       on: main
