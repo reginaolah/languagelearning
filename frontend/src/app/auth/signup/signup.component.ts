@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../core/interfaces/user';
-import { AuthService } from '../core/services/auth.service';
-import { NotificationService } from '../core/services/notification.service';
+import { User } from '../../core/interfaces/user.interface';
+import { AuthService } from '../../core/services/auth.service';
+import { NotificationService } from '../../core/services/notification.service';
+import { MatPasswordStrengthComponent } from '@angular-material-extensions/password-strength';
 
 @Component({
   selector: 'app-signup',
@@ -21,13 +22,12 @@ export class SignupComponent {
     ) { 
       //Többszörös feliratkozást kerüljük
       this.signupForm = this.formBuilder.group({
-        username: [null, Validators.required], 
-        email:[null, Validators.required],
-        first_name:[null, Validators.required], 
-        last_name:[null, Validators.required],
-        password: [null, Validators.required],
-        role:[null, Validators.required]
-
+        username: [null],
+        password: [null],
+        email:[null],
+        first_name:[null], 
+        last_name:[null],
+        role:[null]
       });
     }
 

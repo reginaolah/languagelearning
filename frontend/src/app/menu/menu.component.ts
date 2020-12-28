@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
 		this.as.signout();
 	}
   title = 'Italki Clone';
-  
+
   @ViewChild('stickyMenu') menuElement: ElementRef;
 
   stickywhite: boolean = false;
@@ -41,12 +41,12 @@ export class MenuComponent implements OnInit {
         this.stickywhite = false;
         this.whitelogo = false;
         this.transparentlogo = true;
-      }       
+      }
       if(windowScroll >= 510){
         this.stickywhite = true;
         this.whitelogo = true;
         this.transparentlogo = false;
-      } 
+      }
       else if(windowScroll <this.elementPosition){
         this.stickywhite = false;
         this.whitelogo = false;

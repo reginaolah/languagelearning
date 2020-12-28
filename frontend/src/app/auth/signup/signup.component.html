@@ -1,8 +1,4 @@
-<app-menu></app-menu>
-<div class="signupForm" fxLayoutAlign="center center" fxFlexFill>
-    <mat-card fxFlex="30">
-        <mat-toolbar color="primary">Sign up</mat-toolbar>
-        <form [formGroup]="signupForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signup(signupForm)" ovalidate>            
+<form [formGroup]="signupForm"  display="flex" justify-content="center" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signup(signupForm)" novalidate>
             <mat-form-field>
                 <input
                     matInput
@@ -63,11 +59,10 @@
                 <mat-error>Please provide a password!</mat-error>
             </mat-form-field>
            
-            <mat-radio-group >
-                <mat-radio-button class="selectOneBtn" value="STUDENT">Student</mat-radio-button>
-                <mat-radio-button value="TEACHER">Teacher</mat-radio-button>
+            <mat-radio-group formControlName="role" >
+                <mat-radio-button  class="selectOneBtn" value="STUDENT">Student</mat-radio-button>
+                <mat-radio-button  value="TEACHER">Teacher</mat-radio-button>
             </mat-radio-group>
             <button mat-raised-button color="primary">Sign up</button>
-        </form>
-    </mat-card>
-</div>
+</form>
+

@@ -3,10 +3,20 @@
       <div #whiteLogo [class.whitelogo] = "whitelogo" routerLink=""></div>
       <div #transparentLogo [class.transparentlogo] = "transparentlogo" routerLink=""></div>
       <div class="spacer"></div>
-      <button mat-button routerLink="/signup" routerLinkActive="active">Signup</button>
-      <button mat-button routerLink="/signin" routerLinkActive="active" >Signin</button>
+     
+    
+      <div *ngIf="(isSignedIn$ | async); else elseBlock">
+        <button mat-button (click)="signout()">Signout</button> 
+      </div>
+      <ng-template #elseBlock>
+        <button mat-button routerLink="/signin" routerLinkActive="active" >Signin</button>
+        <button mat-button routerLink="/signup" routerLinkActive="active">Signup</button>
+      </ng-template>
+
       <button mat-button routerLink="/teachers" routerLinkActive="active">Find a Teacher</button>
-      <button mat-button *ngIf="(isSignedIn$ | async)" (click)="signout()">Signout</button>
+      <div *ngIf="(isSignedIn$ | async)">
+      <button mat-button routerLink="/dashboard" routerLinkActive="active">Profile</button>
+    </div>
   </mat-toolbar-row>
   </mat-toolbar>
 

@@ -1,12 +1,12 @@
+<div *ngIf="router.url == '/'; else nodrawer">
 <div class="bg-img">
-  <router-outlet>
-  </router-outlet>
+ <app-menu></app-menu>
 <div class="onImg">
   <h1 class="headerText">Become Fluent in Any Language</h1>
   <h3 class="subtitle">Choose from over 10,000 teachers for 1-on-1 lessons based on your goals and interests.</h3> 
   <form>
     <mat-form-field>
-      <input type="text" placeholder="Choose a language" matInput [matAutocomplete]="auto" [formControl]="myControl"/>
+      <input type="text" placeholder="Choose a language..." matInput [matAutocomplete]="auto" [formControl]="myControl"/>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
@@ -29,9 +29,12 @@
           </mat-card>
       </div>
  </div>
-
 <button class="ftButton" mat-button routerLink="/teachers">FIND YOUR TEACHER</button>
-
-
   <footer>
   </footer>
+</div>
+  <ng-template #nodrawer>
+    <div class="wrapper dynamic-background">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>

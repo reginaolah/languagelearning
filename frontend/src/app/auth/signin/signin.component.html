@@ -1,8 +1,4 @@
-<app-menu></app-menu>
-<div class="container" fxLayoutAlign="center center" fxFlexFill>
-    <mat-card fxFlex="30">
-        <mat-toolbar color="primary">Signin</mat-toolbar>
-        <form [formGroup]="signinForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signin(signinForm)" ovalidate>            
+<form [formGroup]="signinForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signin(signinForm)" novalidate>       
             <mat-form-field>
                 <input
                     matInput
@@ -25,7 +21,5 @@
                 >
                 <mat-error>Please provide a password!</mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary">Sign in</button>
+            <button mat-raised-button color="primary">Sign in    </button>
         </form>
-    </mat-card>
-</div>

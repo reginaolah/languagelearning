@@ -1,0 +1,18 @@
+<app-menu></app-menu>
+<div *ngIf="router.url == '/signin'">
+<div class="form" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary">Signin</mat-toolbar>
+        <app-signin></app-signin>
+    </mat-card>
+</div>
+</div>
+<div *ngIf="router.url == '/signup'">
+    <div class="form" fxLayoutAlign="center center" fxFlexFill>
+        <mat-card fxFlex="25">
+            <mat-toolbar color="primary">Signup</mat-toolbar>
+            <app-signup></app-signup> 
+        </mat-card>
+    </div>
+</div>
+

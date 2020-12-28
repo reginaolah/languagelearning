@@ -96,13 +96,15 @@ userRouter
     const { username, password }: AuthenticationDto = req.body;
     const user = await req.userRepository!.findOne({ username });
     if (!user) {
-      return res.sendStatus(404);
+      return res.sendStatus(401);
     }
     const hashedPassword = await hashPassword(password);
     if (hashedPassword !== user.password) {
       return res.sendStatus(401);
     }
-    return res.status(200).send(generateJwt(user));
+    return res.send({
+      token: generateJwt(user)
+    });
   })
 
   // update signed in user's profile
