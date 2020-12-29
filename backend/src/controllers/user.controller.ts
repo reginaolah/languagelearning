@@ -102,9 +102,7 @@ userRouter
     if (hashedPassword !== user.password) {
       return res.sendStatus(401);
     }
-    return res.send({
-      token: generateJwt(user)
-    });
+    return res.status(200).send(generateJwt(user));
   })
 
   // update signed in user's profile

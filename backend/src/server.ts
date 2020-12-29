@@ -5,7 +5,6 @@ import { routes } from "./controllers";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { passport } from "./security/passport";
-import cors from 'cors';
 
 export const app = express();
 
@@ -13,8 +12,6 @@ app.use(bodyParser.json());
 
 //auth
 app.use(cookieParser());
-app.use(cors());
-
 app.use(passport.initialize());
 
 //database
