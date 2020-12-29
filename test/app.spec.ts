@@ -30,7 +30,7 @@ describe('Language Learning Platform', () => {
 
       beforeEach(async () => {
         const loginResponse = await requestHandle.post('/users/signin').send(user);
-        token = `Bearer ${loginResponse.text}`;
+        token = `Bearer ${loginResponse.body.token}`;
       });
   
       describe('/users', () => {
