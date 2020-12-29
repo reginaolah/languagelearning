@@ -5,12 +5,12 @@ jobs:
     cache:
       directories:
       - node_modules
-    before_install: cd backend
     after_success: npm build
-    deploy:
-      skip_cleanup: true
-      provider: heroku
-      api_key:
-        secure: "B629MRw2dW2287X6BOJGAF7VrpjN8uvBwKbCetc7KzNc0sQmQ6allS6qwNHshgT1kXpNReRpC1dG4ExlIf6YaLTcq4Xhhoat3sEaEaMEVsW5gXShqFFkXu0DccHUhuYYX775e1JfEFviC2lWLPV0JB3bmIg51SbxJ1D1eOEXSXbYfzBl+qo2Kkpi0ob7Oq80TjJCUPotOj9o1xOAsYdQy6C+K7uRqNIJrSESGAUMvv7FmqgQSqJ63ETwdFeLzAToDvaR3/mKpnbJn1pWZIo4CfBoCq/8LZUyy3mtCQq39wHa9kGCRsgaiNXt+KlPRadNgteL6G/gjJpB9I7yHOJtiSwwNhAgQ0YblUiOwYX+v2R/gp+vlVnye7jFhfL4wXsOtZ4PBurYO5kimsYxFbhYlW3ZP4NyiTazgAOGD/8cccIY9SaOuTEQN+wFj4mmc2wAtF0jNZ0wesMtHmtYBNf5eDpoCUtNOhpgTP3+ysr5TKWaCXsb2I9Id4SfUn4Sm0cFBDS8k92jEQoM1Vec43SSNmVxCL91cPT+4yMdirL/luici4taldEcs2bbEDN7+A7DCDTXDWU4EsJDFgAxoDrFD3q0acNzLwckaAhrChGmpjc/42zdN27Ch060x5FnYhLhlOHzFIpwYBk09T0E8hkefANCwNu6wD6w/jCtTN+b5W0="
-      app: languagelearningappbackend
-      on: main
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  api_key:
+    secure: "wi1zOww9v9irY6Y0cdoayE+uoBn6yWE7fnHRKTXntgEEVbII5MF2Y4M7tCH/Da3wSStwrMd9wNKrQK5Qz/Rok3aUoq/OsWVba3VEv+SAFG268RV0YpJdO0xZQnyVbA6KGbRWJu/t+QpgJq5UCRElVQ3ZQCoKDra1cqvhwImojU8lWndTl+53GLiLtJ4FYp95p1xDelkb45VFeFv3Dys7LJV6nnGC4XvG9NG48q2bZT1bIT80OgJCAeJwrnm3xv6vpR9Tp2Huh4dE7R6612oPE2yDablzb0PpMi9E7hp18dfYZNYowBpE7TWyZm+3fb/UNnMKkgHOGm5gAM6QLOHGsMF2HmQYizxlK3+4wUc5Teq8puhjxnNLTWbih2+XBgLuRCD79j+8XWzb4jhg5OWbWawlf2FfPse+7cbT03MYvKvdWls1yLmy1N+1LmasR94r6vwBWN5qMb1rR5Vg2gWiY2L5wVqt65EuFbq3uASWA7Hc9ibSoSfUyGQvU8tjmBVPcFnPz65MpMj9G1xOI+8r3aHq9GGT5QaBakAeRoboVCqYtUFV9zKWA5X273xOJQ2VRHAOHa89gqQsLsODcXSpfo4MlPsgbDmE9l+jSAcI/Wr1Qltt32f2vjb7Kibk3lUgfz/GGMhdpZjxsvwshHx8TMNTMA6Viwz7g/WDnrNXaD0="  
+  app: languagelearningappbackend
+  on: main
+
