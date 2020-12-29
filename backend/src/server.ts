@@ -7,7 +7,6 @@ import cookieParser from "cookie-parser";
 import { passport } from "./security/passport";
 import cors from 'cors';
 
-
 export const app = express();
 
 app.use(bodyParser.json());

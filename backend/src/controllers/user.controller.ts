@@ -96,7 +96,7 @@ userRouter
     const { username, password }: AuthenticationDto = req.body;
     const user = await req.userRepository!.findOne({ username });
     if (!user) {
-      return res.sendStatus(401);
+      return res.sendStatus(404);
     }
     const hashedPassword = await hashPassword(password);
     if (hashedPassword !== user.password) {
