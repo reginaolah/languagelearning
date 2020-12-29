@@ -5,22 +5,7 @@ jobs:
     cache:
       directories:
       - node_modules
-    before_install: cd backend
-    after_success: npm build
-    deploy:
-      skip_cleanup: true
-      provider: heroku
-      api_key:
-        secure: "aKRHq2w49S81EquaAxr/7KqGdLKS74mzpbshCA8pz0kgAHL1FpKbHCHpRcY2YooD0xIC4ztN6wTSXk+znuJ4zOYoumobqvFR89mCzWdjkI+UPhNHmWwsK9vTfAph61JcT/DygwylRbp7MoRnVTaj1GtICv7EDagj6LgcHsJtPpqenxIrcBxEF++jaGx09lvE3u+g5ZIItAmJIHQwkn49Zz0gO7pJik86xnL7dl+gXh7PsRCIHBfIiOObV45LfUOje/5BXiDR6pnCB9venf8Gl5uOCaFhZgwqnTeuAs2/6WBE+yqEknoWmZAtR7cLVraP7T8EYFMAmRoCxDoqMdlWX9CJspht/0QoNYJLt9zFj45Lh/RZyCECfd5cVgWQCpDPB+RhHbmNRcMJmo18au5elw+AsF59zrq3E2NdkvyO0zYCpBQgm++y2k2rRcCM4S6j03wj92OaZZyKX+HdX877icwLxFYXWojf8dgWN49WOhOVRb/McobyWB+/sAAzI05yz+/xe0zei20KBfXmji9h+DPSWiaUfElkKE0DBjttIiODDBJe04foNqSFNQ6wfvDRvSpotzarFiKvWD116ROlJFPUfV9rK5z0C0jZyh2meh4O98CSljPBRga2FcZ54cjMKcTMjBBiJgBpY5lDsrEPB6xsSrpcDK2HeA9ocO3PEp8="
-      app: languagelearningappbackend
-      on: main
-  - language: node_js
-    node_js: node
-    cache:
-      directories:
-      - node_modules
-    before_install:
-    - cd frontend
+    before_install: cd frontend
     before_script:
     - npm install -g @angular/cli
     script:
@@ -30,6 +15,6 @@ jobs:
       provider: heroku
       local_dir: dist/frontend
       api_key:
-        secure: "rowSh0rYi374Sa5FAlfQ/AoigiAj5T+QLj12AAtkmlbByV/w3pyZJP96bk0wpZp/9C6jVn6U2+KDMMyYjbWwmKMMfK1U2Rqr61mxU/TqpA0GYpw+dZop/mPXZXNFNXvnCIFOIPagoT8WUCJBGvPAW44LZzkj+FNClKacw5crU0hQ2psmiXR+bz9nBmjdcURO0I9jem19GmrAiMw2n8ju7hv5kAetCP9L4ArcqUhQRwXpsKc+YXsBfCnDsSLiWl5KQn9dSHis1Iq5J6QnDMLtGwSGNIXJOWGTLGA94MbOFzp7Dgr0nY9RZVziee5cW6TF1ARrSZobuyZinvvMQ02N+AbU6MN2uOJC+5Y8T70aj+2ntvIQ4Ms/khpCDupfXrgmjj39Govx09SdLANKGkKODnlOs671UAlkCwfg6/RaySvPNdTqgZob3JijaCWTGJTnetZ/rTkv/HkgVG3XtaCz9QW1gcc/aHRAycJhbjOfERbiiTdPZuWarlyqDArKRZsip5ekRfxYA/YDVM2UyzRU/yZRtKfDlBdrpsEnQ38a1RXfzT7mw1papBUDilXc5QWdXUEP2MJ/n5j37IRX9Nngti4Z9IsNEDjL+oIF6ZEAUYwUHqzi5WZchj8xIjLdE07OGk0tS52pa0DcyZOXcifeCD7VvUL1/LL15qLUn4/0kn8="
+        secure: "SlrHvJ7usRsorb8/g/xnDDzyyhSw/9BtR0sj2IrRrO1+NYgpXPc1rf4ak69DRgrnQWY6pLMU5Ir40YangU77URc1fKUHXNC9K6mQuxTyjFcyoQBrPnqB4z1eKZDCiu8iA5FVqN2jX8yFbOwMnCNud9ixIauB/i0DWkqM7HHpWlLniY/sKH6c6EakbVSOY0oH1nxwc9lmO+hYEVCFndutZVYSSHSQhI6GdLLWvUK5smgxVaCNs5apwDDan+1C2WquIiBG5kiD5p9ljVbf77+CMZJ08hlh6M29Hz1v70Ra3+IIYNOAuaZqaUGsBV+uLLYaSfatrtK8edOU403lsgXJMvbShD/UnvECark38Zp6FGl0f0drsmUR2CA3aVmhtngNku5qbXSZ4YS14Xnnrbq5czbray7XQvhqTQIGf4Y6uTL6NUPzQiub+XOc/OUYnSOEggZ/dSBbn35Rwmcl0bzbSmDVJqBczPSn06h2dAKdBhbBDfADyN8NrhZXkYEnqGAVBhPh4fEbNXrud7AGWhYtb2y1OHvGqg6fQl+8OdguQHonajA/RVul3b6jslVplsUCX54SnTwr+haehC+T3M6ptRwn/mLq6DmjiHaXuxyCjiJT6SZA7A+Q301vJegRsYTbLmVV+skGr+nqxVOXr7+EgwPiEJMcos/4au+FDVx9ZkQ="
       app: languagelearningappfrontend
       on: frontend
