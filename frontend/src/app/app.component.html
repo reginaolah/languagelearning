@@ -5,30 +5,41 @@
   <h1 class="headerText">Become Fluent in Any Language</h1>
   <h3 class="subtitle">Choose from over 10,000 teachers for 1-on-1 lessons based on your goals and interests.</h3> 
   <form>
-    <mat-form-field>
-      <input type="text" placeholder="Choose a language..." matInput [matAutocomplete]="auto" [formControl]="myControl"/>
-      <mat-autocomplete #auto="matAutocomplete">
+    <mat-form-field class="autocompleteSearch">
+      <input class="searchInput" type="text" placeholder="Choose a language..." matInput [matAutocomplete]="auto" [formControl]="myControl" />
+      
+      <mat-autocomplete class="autoComplete" #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-button class="searchIcon" routerLink="/teachers">
+      <mat-icon >search</mat-icon>
+    </mat-button>
   </form>
 </div>
 </div>
 
-<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" >
-        <div ngxSlickItem *ngFor="let language of languages" class="slide">
-          <app-language-card [language]="language"></app-language-card>
-        </div>
-  </ngx-slick-carousel>
+<div class="teacher-cards" fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div fxFlex="25%" *ngFor="let language of languages">
+      <mat-card class="example-card" routerLink="/languages">
+          <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{ language.language }}</mat-card-title>
+              <mat-card-subtitle></mat-card-subtitle>
+          </mat-card-header>
+        <img mat-card-image src="../assets/french_teacher.jpg" />
+      </mat-card>
+  </div>
+</div>
 	
 
 <button class="ftButton" mat-button routerLink="/teachers">FIND YOUR TEACHER</button>
  
 </div>
-  <ng-template #nodrawer>
-    <div class="wrapper dynamic-background">
-      <router-outlet></router-outlet>
-    </div>
-  </ng-template>
+<ng-template #nodrawer>
+  <div class="wrapper dynamic-background">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

@@ -60,6 +60,64 @@ position: relative;
 
 .searchbar{
   background-color: white;
-  color: white;
+  color: black;
+  border: 2px;
 
+}
+
+.searchIcon{
+  padding-top:17.5px;
+  padding-bottom:6px;
+  padding-right:7px;
+  background-color: white;
+  color: black;
+  cursor:pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 3px;
+  border: 2px;
+}
+
+.autocompleteSearch{
+  background-color: white;
+  max-height: 40px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 3px;
+
+
+  }
+
+.searchInput{
+  color: black;
+}
+
+.subtitle{
+  color: white;
+}
+
+.teacher-cards > mat-card {
+  padding: 10px;
+  width: 200px; 
+}
+ 
+.example-card {
+  color:black;
+  max-width: 200px;
+  max-height: 250px;
+  margin-top:10%;
+  margin-left:15%;
+  margin-right:5%;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+             0 1px 1px 0 rgba(0,0,0,1), 
+             0 1px 3px 0 rgba(0,0,0,1);
+}
+ 
+.mat-card-subtitle{
+  color:black;
+}
+
+.example-header-image {
+  background-image: url('../assets/france.png');
+  background-size: cover;
 }
