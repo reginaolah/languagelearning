@@ -18,12 +18,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppRoutingModule } from './app-routing.module';
-import {MatRadioModule} from '@angular/material/radio'; 
+import { MatRadioModule } from '@angular/material/radio';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AnonymGuard } from './core/guards/anonym.guard';
-import {MatTabsModule} from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -37,56 +37,50 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
-	declarations: [
-	AppComponent,
-	AuthComponent,
-		SigninComponent,
-		SignupComponent,
+  declarations: [
+    AppComponent,
+    AuthComponent,
+    SigninComponent,
+    SignupComponent,
     MenuComponent,
     TeachersCardComponent,
     StudentCardComponent,
     LanguageCardComponent,
     LessonsComponent,
-	PagenotfoundComponent,
-	DashboardComponent,
-	TeachersComponent
-  	],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		FormsModule,
-		ReactiveFormsModule,
-		HttpClientModule,
-		FlexLayoutModule,
-		MatToolbarModule,
-		MatSidenavModule,
-		MatCardModule,
-		MatInputModule,
-		MatSelectModule,
-		MatButtonModule,
-		MatChipsModule,
-		MatTooltipModule,
-		MatDialogModule,
-		MatIconModule,
-		MatListModule,
-		MatRippleModule,
-		MatExpansionModule,
-		MatSnackBarModule,
-		AppRoutingModule,
-		MatAutocompleteModule,
-		MatRadioModule,
-		MatTabsModule,
-		MatPasswordStrengthModule, 
-		SlickCarouselModule
-	],
-	providers: [
-		AuthGuard,
-		AnonymGuard
-	],
-	bootstrap: [AppComponent]
+    PagenotfoundComponent,
+    DashboardComponent,
+    TeachersComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatIconModule,
+    MatListModule,
+    MatRippleModule,
+    MatExpansionModule,
+    MatSnackBarModule,
+    AppRoutingModule,
+    MatAutocompleteModule,
+    MatRadioModule,
+    MatTabsModule,
+    MatPasswordStrengthModule,
+  ],
+  providers: [AuthGuard, AnonymGuard],
+  bootstrap: [AppComponent],
 })
- 
-export class AppModule { }
+export class AppModule {}

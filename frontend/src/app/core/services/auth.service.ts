@@ -24,7 +24,7 @@ export class AuthService {
       'content-Type': 'application/json',
       'Authorization': ''
     }),
-   
+    responseType: 'text' as 'json'
   };
 
   constructor(
@@ -38,9 +38,11 @@ export class AuthService {
     }
 
     signup(user: User ): void {
-      this.http.post<User>(`${baseUrl}/users/signup`, user, { responseType: 'json'}).subscribe(
+      this.http.post<User>(`${baseUrl}/users/signup`, user, this.httpOptions).subscribe(
         data => {
           this.ns.show('Sikeres regisztráció!');
+          //sign in after sign up
+          this.signin(user);
         },
         error => {
           this.ns.show('HIBA! Regisztráció sikertelen!');
@@ -50,9 +52,9 @@ export class AuthService {
     }
 
     signin(user: User): void {
-      this.http.post<User>(`${baseUrl}/users/signin`, user, this.httpOptions).subscribe(
+      this.http.post<User>(`${baseUrl}/users/signin`,user, {responseType: 'json'}).subscribe(
         data => {
-          localStorage.setItem('token', data['token']);
+          localStorage.setItem('token', data["token"]);
           this.isSignin$.next(true);
           this.ns.show('Sikeres bejelentkezés!');
           this.router.navigate(['/dashboard']);

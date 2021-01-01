@@ -1,1 +1,57 @@
-<app-menu></app-menu>
+<div class="content">
+  <div style="background-color: #5eaaa8;"><app-menu></app-menu></div>
+  <div class="topDiv">
+    <div class="userCard">
+      <mat-card *ngIf="user" style="background-color: #5eaaa8; color: #111d5e;">
+        <mat-card-title>
+          <img
+            src="https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg"
+            alt="profile image"
+            height="100px"
+            width="100px"
+            style="border-radius: 100%;"
+          />
+          <p>
+            {{ user.first_name }} {{ user.last_name }} ({{ user.username }})
+          </p>
+        </mat-card-title>
+        <mat-card-content>
+          <hr>
+          <p>{{ user.role }}</p>
+          <p *ngIf="user.country">From {{ user.country }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="languageCard">
+      <mat-card *ngIf="user" style="background-color: #5eaaa8; color: #111d5e;">
+        <mat-card-title>Choosen languages</mat-card-title>
+        <mat-card-content>
+          <ul class="languages">
+            <li *ngFor="let language of user.languages">
+              <span>{{ language.language }}</span>
+            </li>
+          </ul>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="changeLanguageCardActions">
+            <button class="changeLanguageButton" mat-button>Update</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div class="bottomDiv">
+    <div class="studentlessonsCard">
+      <mat-card *ngIf="user" style="background-color: #5eaaa8; color: #111d5e;">
+        <mat-card-title style="margin: 10px;">Upcoming lessons</mat-card-title>
+        <mat-card-content>
+          <ul class="lessons">
+            <li *ngFor="let lesson of lessons">
+              <span>{{ lesson }}</span>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
