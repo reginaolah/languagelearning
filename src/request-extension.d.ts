@@ -13,6 +13,7 @@ declare global {
       orm: MikroORM<IDatabaseDriver>;
       userRepository?: EntityRepository<ApplicationUser>;
       lessonRepository?: EntityRepository<ApplicationUser>;
+	    languageRepository?: EntityRepository<ApplicationUser>;
       studentLessonRepository?: EntityRepository<ApplicationUser>;
       homeworkRepository?: EntityRepository<ApplicationUser>;
     }
