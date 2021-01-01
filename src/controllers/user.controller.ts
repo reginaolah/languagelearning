@@ -56,7 +56,7 @@ userRouter
     const user = await req.userRepository!.findOne(
       { id: authUser.id },
       {
-        populate: ["languages"],
+        populate: ["languages", "lessons"],
       }
     );
     return res.status(200).send(user);
@@ -96,15 +96,37 @@ userRouter
     const { username, password }: AuthenticationDto = req.body;
     const user = await req.userRepository!.findOne({ username });
     if (!user) {
-      return res.sendStatus(401);
+      return res.sendStatus(404);
     }
     const hashedPassword = await hashPassword(password);
     if (hashedPassword !== user.password) {
-      return res.sendStatus(401);
+      return res.sendStatus(403);
     }
     return res.send({
-      token: generateJwt(user)
+      token: generateJwt(user),
     });
+  })
+
+  // add language to signed in user
+  .patch("/updatelanguage", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    const authUser = req.orm.em.getReference(User, req.user!.id);
+    const id = authUser.id;
+    const user = await req.userRepository!.findOne(
+      { id },
+      {
+        populate: ["languages"],
+      }
+    );
+    
+    wrap(user).assign({ ...req.body}, { em: req.orm.em });
+
+    const languages = user.languages.getItems();
+    if (languages) {
+      languages.filter((language: number) => language).forEach((language: number) => req.orm.em.merge(language));
+    }
+
+    await req.userRepository!.persistAndFlush(user);
+    return res.send(user);
   })
 
   // update signed in user's profile
