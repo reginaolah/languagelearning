@@ -6,6 +6,12 @@ import { User } from './core/interfaces/user.interface';
 import { AuthService } from './core/services/auth.service';
 import { NotificationService } from './core/services/notification.service';
 import { Router } from '@angular/router';
+import { LanguageService } from './core/services/language.service';
+import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+import { _getOptionScrollPosition } from '@angular/material/core';
+import { Language } from '../app/core/interfaces/language.interface';
+import { BehaviorSubject } from 'rxjs';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,20 +21,34 @@ import { Router } from '@angular/router';
 
 export class AppComponent implements OnInit {
 
-  options: string[] = ['English', 'Spanish', 'French', 'Chinese'];
+  options: string[] = [];
+  languages: Language[] = [];
   filteredOptions: Observable<string[]>;
-
+  
   myControl = new FormControl();
 
-  constructor(public router: Router) { }
 
-  ngOnInit(): void {
-   this.filteredOptions = this.myControl.valueChanges.pipe(
-     startWith(''),
-     map(value => this._filter(value))
-   );
+  constructor(
+    public router: Router,
+    public ls: LanguageService
+    ) {}
+
+    ngOnInit() {
+      this.ls.getLanguages().then((languages: Language[]) =>{
+      this.languages = languages;
+      console.log(this.languages);
+      console.log(languages);
+      languages.forEach( element => {
+        this.options.push(element.language);
+      });
+    })
+    
+     this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
-
+ 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option =>

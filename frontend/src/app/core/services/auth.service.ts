@@ -24,7 +24,7 @@ export class AuthService {
       'content-Type': 'application/json',
       'Authorization': ''
     }),
-    responseType: 'text' as 'json'
+   
   };
 
   constructor(
@@ -38,7 +38,7 @@ export class AuthService {
     }
 
     signup(user: User ): void {
-      this.http.post<User>(`${baseUrl}/users/signup`, user, this.httpOptions).subscribe(
+      this.http.post<User>(`${baseUrl}/users/signup`, user, { responseType: 'json'}).subscribe(
         data => {
           this.ns.show('Sikeres regisztráció!');
         },

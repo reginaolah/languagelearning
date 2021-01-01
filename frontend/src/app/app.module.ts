@@ -21,7 +21,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import { AppRoutingModule } from './app-routing.module';
 import {MatRadioModule} from '@angular/material/radio'; 
-
 import { AuthGuard } from './core/guards/auth.guard';
 import { AnonymGuard } from './core/guards/anonym.guard';
 import {MatTabsModule} from '@angular/material/tabs'; 
@@ -34,11 +33,11 @@ import { TeachersCardComponent } from './teachers-card/teachers-card.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { LanguageCardComponent } from './language-card/language-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
-import { LessonComponent } from './lessons/lesson/lesson.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
 	declarations: [
@@ -51,7 +50,6 @@ import { TeachersComponent } from './teachers/teachers.component';
     StudentCardComponent,
     LanguageCardComponent,
     LessonsComponent,
-	LessonComponent,
 	PagenotfoundComponent,
 	DashboardComponent,
 	TeachersComponent
@@ -81,7 +79,8 @@ import { TeachersComponent } from './teachers/teachers.component';
 		MatAutocompleteModule,
 		MatRadioModule,
 		MatTabsModule,
-		MatPasswordStrengthModule
+		MatPasswordStrengthModule, 
+		SlickCarouselModule
 	],
 	providers: [
 		AuthGuard,

@@ -17,21 +17,15 @@
 </div>
 </div>
 
- <div class="teacher-cards" fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="25%" *ngFor="let num of [1,2,3,4,5,6,7,8]">
-          <mat-card class="example-card" routerLink="/languages">
-              <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>French</mat-card-title>
-                  <mat-card-subtitle>189 teachers</mat-card-subtitle>
-              </mat-card-header>
-            <img mat-card-image src="../assets/french_teacher.jpg" />
-          </mat-card>
-      </div>
- </div>
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" >
+        <div ngxSlickItem *ngFor="let language of languages" class="slide">
+          <app-language-card [language]="language"></app-language-card>
+        </div>
+  </ngx-slick-carousel>
+	
+
 <button class="ftButton" mat-button routerLink="/teachers">FIND YOUR TEACHER</button>
-  <footer>
-  </footer>
+ 
 </div>
   <ng-template #nodrawer>
     <div class="wrapper dynamic-background">
