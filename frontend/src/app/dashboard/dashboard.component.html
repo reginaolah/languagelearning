@@ -1,53 +1,187 @@
 <div class="content">
-  <div style="background-color: #5eaaa8;"><app-menu></app-menu></div>
+  <div><app-menu></app-menu></div>
+
   <div class="topDiv">
     <div class="userCard">
-      <mat-card *ngIf="user" style="background-color: #5eaaa8; color: #111d5e;">
+      <mat-card
+        *ngIf="user && !updateUser; else"
+        style="
+          background-color: #f7c272;
+          color: #111d5e;
+          width: 30em;
+          margin: 0 auto;
+        "
+      >
+        <div style="width: 100%; height: 100%; position: absolute">
+          <div class="updateUser" *ngIf="user">
+            <button mat-button (click)="updateUserHandler()">Update</button>
+          </div>
+        </div>
         <mat-card-title>
           <img
             src="https://icon-library.com/images/generic-user-icon/generic-user-icon-19.jpg"
             alt="profile image"
             height="100px"
             width="100px"
-            style="border-radius: 100%;"
+            style="border-radius: 100%"
           />
           <p>
             {{ user.first_name }} {{ user.last_name }} ({{ user.username }})
           </p>
         </mat-card-title>
         <mat-card-content>
-          <hr>
+          <hr />
           <p>{{ user.role }}</p>
           <p *ngIf="user.country">From {{ user.country }}</p>
+          <p *ngIf="user.is_native && user.role === 'TEACHER'">
+            Type: {{ user.is_native }}
+          </p>
+          <p *ngIf="user.type && user.role === 'TEACHER'">
+            Type: {{ user.type }}
+          </p>
         </mat-card-content>
       </mat-card>
     </div>
+    <div class="homeworkCard">
+      <mat-card
+        *ngIf="user"
+        style="
+          background-color: #f7c272;
+          color: #111d5e;
+          height: 10em;
+          width: 15em;
+          margin: 0 auto;
+        "
+      >
+        <mat-card-title>Homework</mat-card-title>
+        <mat-card-content>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Homework code</mat-label>
+              <input matInput placeholder="0000" [value]="homeworkCode"/>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions style="display: 'flex'; justify-content: center">
+          <button
+            mat-button
+            *ngIf="user.role === 'TEACHER'"
+            (click)="openDialog()"
+          >
+            New
+          </button>
+          <button mat-button (click)="onGetHomeworkHandler">Go</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
     <div class="languageCard">
-      <mat-card *ngIf="user" style="background-color: #5eaaa8; color: #111d5e;">
+      <mat-card
+        *ngIf="user && !updateLanguages; else changeLanguageDiv"
+        style="
+          background-color: #f7c272;
+          color: #111d5e;
+          height: 15em;
+          width: 20em;
+          margin: 0 auto;
+        "
+      >
         <mat-card-title>Choosen languages</mat-card-title>
         <mat-card-content>
           <ul class="languages">
-            <li *ngFor="let language of user.languages">
-              <span>{{ language.language }}</span>
-            </li>
+            <ngx-simplebar [options]="options">
+              <li *ngFor="let language of user.languages">
+                <span>{{ language.language }}</span>
+              </li>
+            </ngx-simplebar>
           </ul>
         </mat-card-content>
         <mat-card-actions>
           <div class="changeLanguageCardActions">
-            <button class="changeLanguageButton" mat-button>Update</button>
+            <button
+              class="changeLanguageButton"
+              mat-button
+              (click)="updateLanguagesHandler()"
+            >
+              Update
+            </button>
           </div>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
   <div class="bottomDiv">
-    <div class="studentlessonsCard">
-      <mat-card *ngIf="user" style="background-color: #5eaaa8; color: #111d5e;">
-        <mat-card-title style="margin: 10px;">Upcoming lessons</mat-card-title>
+    <div class="soldlessonsCard">
+      <mat-card
+        *ngIf="user && user.role === 'TEACHER'"
+        style="background-color: #f7c272; color: #111d5e"
+      >
+        <mat-card-title style="margin: 10px">Sold lessons</mat-card-title>
+        <mat-card-content style="margin: 0 auto">
+          <table
+            class="lessons"
+            style="
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              font-size: 1.5em;
+            "
+          >
+            <tr>
+              <th>Price</th>
+              <th>Title</th>
+              <th>Language</th>
+              <th>
+                <button class="changeLanguageButton" mat-button>New</button>
+              </th>
+            </tr>
+            <tr *ngFor="let lesson of user.lessons">
+              <td>
+                <span>{{ lesson.price }}</span>
+              </td>
+              <td>
+                <span>{{ lesson.title }}</span>
+              </td>
+              <td>
+                <span>{{ getLessonLanguage(lesson.lesson_language) }}</span>
+              </td>
+              <td>
+                <div style="display: flex; flex-direction: row;">
+                  <button class="changeLanguageButton" mat-button>
+                    Update
+                  </button>
+                  <button class="changeLanguageButton" mat-button>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="homeworksCard">
+      <mat-card *ngIf="user" style="background-color: #f7c272; color: #111d5e">
+        <mat-card-title style="margin: 10px">Upcoming homeworks</mat-card-title>
         <mat-card-content>
           <ul class="lessons">
-            <li *ngFor="let lesson of lessons">
-              <span>{{ lesson }}</span>
+            <li *ngFor="let lesson of user.lessons">
+              <span>{{ lesson.price }}</span>
+              |
+              <span>{{ lesson.title }}</span>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="studentlessonsCard">
+      <mat-card *ngIf="user" style="background-color: #f7c272; color: #111d5e">
+        <mat-card-title style="margin: 10px">Upcoming lessons</mat-card-title>
+        <mat-card-content>
+          <ul class="lessons">
+            <li *ngFor="let lesson of user.lessons">
+              <span>{{ lesson.price }}</span>
+              |
+              <span>{{ lesson.title }}</span>
             </li>
           </ul>
         </mat-card-content>
@@ -55,3 +189,49 @@
     </div>
   </div>
 </div>
+
+<ng-template #changeLanguageDiv>
+  <mat-card
+    *ngIf="user"
+    style="
+      background-color: #f7c272;
+      color: #111d5e;
+      height: 15em;
+      width: 20em;
+      margin: 0 auto;
+    "
+  >
+    <mat-card-title>Update languages</mat-card-title>
+    <mat-card-content>
+      <ngx-simplebar [options]="options">
+        <div class="updatelanguagesList" *ngFor="let language of allLanguages">
+          <!-- checked if user already picked the language up -->
+          <mat-checkbox
+            class="example-margin"
+            [checked]="alreadyChecked(language.id)"
+            (change)="changeCheckHandler(language.id)"
+            >{{ language.language }}</mat-checkbox
+          >
+        </div>
+      </ngx-simplebar>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="changeLanguageCardActions">
+        <button
+          class="changeLanguageButton"
+          mat-button
+          (click)="updateLanguagesHandler()"
+        >
+          Update
+        </button>
+        <button
+          class="changeLanguageButton"
+          mat-button
+          (click)="cancelActionsHandler()"
+        >
+          Cancel
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>

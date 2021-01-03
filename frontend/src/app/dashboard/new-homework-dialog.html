@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+  <p>New homework</p>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Title" [(ngModel)]="data.title" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" [(ngModel)]="data.name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Description" [(ngModel)]="data.description" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: center">
+  <button
+    mat-button
+    [mat-dialog-close]="{title: data.title, name: data.name,description: data.description}"
+  >
+    Post
+  </button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

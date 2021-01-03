@@ -35,6 +35,7 @@
     "jwt-decode": "^3.1.2",
     "ngx-slick-carousel": "^0.5.1",
     "rxjs": "~6.6.0",
+    "simplebar-angular": "^2.3.0",
     "slick-carousel": "^1.8.1",
     "tslib": "^2.0.0",
     "typescript": "~4.0.2",

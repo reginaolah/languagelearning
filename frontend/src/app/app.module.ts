@@ -35,8 +35,11 @@ import { LanguageCardComponent } from './language-card/language-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, NewHomeWorkDialogComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SimplebarAngularModule } from 'simplebar-angular';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { TeachersComponent } from './teachers/teachers.component';
     PagenotfoundComponent,
     DashboardComponent,
     TeachersComponent,
+    NewHomeWorkDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,9 @@ import { TeachersComponent } from './teachers/teachers.component';
     MatRadioModule,
     MatTabsModule,
     MatPasswordStrengthModule,
+    MatCheckboxModule,
+    SimplebarAngularModule,
+    MatGridListModule,
   ],
   providers: [AuthGuard, AnonymGuard],
   bootstrap: [AppComponent],

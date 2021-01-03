@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: #f8f1f1;
   color: #db6400;
@@ -12,6 +12,7 @@
   display: flex;
   position: relative;
   height: 50%;
+  flex-direction:row;
 }
 
 .bottomDiv {
@@ -21,35 +22,74 @@
   height: 50%;
   text-align: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .userCard {
   display: flex;
   position: relative;
   top: 20%;
-  left: 20%;
-  height: 15em;
-  width: 30em;
+  height: 25em;
+  width: 40%;
   border-radius: 100%;
+}
+
+.updateUser {
+  display: flex;
+  position: absolute;
+  right: 5%;
+  z-index: 1;
+  color: black;
+}
+
+.homeworkCard {
+  display: flex;
+  position: relative;
+  top: 20%;
+  width: 20%;
+  min-height: 5em;
 }
 
 .languageCard {
   display: flex;
+  flex-shrink: 1;
   position: relative;
   top: 20%;
-  left: 30%;
-  height: 15em;
-  width: 20em;
-  border-radius: 100%;
+  width: 40%;
+  min-height: 15em;
+  border-radius: 5%;
 }
 
 .studentlessonsCard {
   display: flex;
   position: relative;
   top: 10%;
+  height: 30em;
+  width: 90%;
+  border-radius: 100%;
+  margin: 2em auto;
+}
+
+.soldlessonsCard {
+  display: flex;
+  position: relative;
+  top: 10%;
   height: 15em;
   width: 90%;
   border-radius: 100%;
+  margin: 2em;
+  margin: 2em auto;
+}
+
+.homeworksCard {
+  display: flex;
+  position: relative;
+  top: 10%;
+  height: 15em;
+  width: 90%;
+  border-radius: 100%;
+  margin: 2em;
+  margin: 2em auto;
 }
 
 .mat-card {
@@ -57,7 +97,7 @@
   width: 100%;
 }
 
-.changeLanguageCardActions{
+.changeLanguageCardActions {
   display: flex;
   text-align: center;
   position: relative;
@@ -73,4 +113,9 @@ li {
   font-size: 1.5em;
   margin: 10px;
   padding: 10px;
+  text-align: left;
+}
+
+.updatelanguages {
+  list-style-type: none;
 }

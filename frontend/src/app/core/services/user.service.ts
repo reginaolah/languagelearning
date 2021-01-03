@@ -31,7 +31,7 @@ export class UserService {
     return user;
   }
 
-  setLanguages(languages: LanguageArray) {
+  updateLanguages(languages: LanguageArray) {
     const header = new HttpHeaders().set(
       'Authorization',
       `Bearer ${localStorage.getItem('token')}`
