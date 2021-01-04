@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
   allLanguages = [];
   newLanguages: Array<number> = [];
 
+  allHomeworks = [];
   homeworkCode = '';
   newHomework: Homework = null;
   title: string;
@@ -71,6 +72,10 @@ export class DashboardComponent implements OnInit {
     this.ls.getLanguages().then((res) => {
       this.allLanguages = res;
       console.log(this.allLanguages);
+    });
+    this.hs.getHomeworks().then((res) => {
+      this.allHomeworks = res;
+      console.log(this.allHomeworks);
     });
   }
 
@@ -109,6 +114,7 @@ export class DashboardComponent implements OnInit {
   updateLanguagesHandler(): void {
     if (this.updateLanguages) {
       this.us.updateLanguages({ languages: this.newLanguages });
+      this.updateLanguages = !this.updateLanguages;
     } else {
       this.updateLanguages = !this.updateLanguages;
     }
@@ -124,15 +130,20 @@ export class DashboardComponent implements OnInit {
   }
 
   onHomeworkCodeChangeHandler(e): void {
-    console.log(e.target.value);
+    this.homeworkCode = e.target.value;
   }
 
   onGetHomeworkHandler(): void {
-    //this.hs.getHomeworkByUuid(this.homeworkCode);
-    console.log(this.homeworkCode);
+    this.hs.getHomeworkByUuid(this.homeworkCode).then((home) => {
+      this.openHomeWorkDialog(home);
+    });
   }
 
-  openDialog(): void {
+  onDeleteHomeworkHandler(uuid: String) {
+    this.hs.deleteHomework(uuid);
+  }
+
+  openNewHomeWorkDialog(): void {
     const dialogRef = this.dialog.open(NewHomeWorkDialogComponent, {
       width: '250px',
       data: {
@@ -144,9 +155,30 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Homework) => {
       console.log('The dialog was closed');
-      //this.animal = result;
-      this.hs.postNewHomework(result);
+      if (result) {
+        this.hs.postNewHomework(result);
+      }
+
       console.log(result);
+    });
+  }
+
+  openHomeWorkDialog(hw: Homework): void {
+    console.log(hw);
+    const dialogRef = this.dialog.open(showHomeWorkDialogComponent, {
+      width: '500px',
+      height: '300px',
+      data: {
+        uuid: hw[0].uuid,
+        title: hw[0].title,
+        name: hw[0].name,
+        description: hw[0].description,
+        path_to_solution: hw[0].path_to_solution,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
     });
   }
 }
@@ -159,6 +191,23 @@ export class DashboardComponent implements OnInit {
 export class NewHomeWorkDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<NewHomeWorkDialogComponent>,
+    public hs: HomeworkService,
+    @Inject(MAT_DIALOG_DATA) public data: Homework
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'show-homework-dialog',
+  templateUrl: 'show-homework-dialog.html',
+  styleUrls: ['./dashboard.component.scss'],
+})
+export class showHomeWorkDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<showHomeWorkDialogComponent>,
     public hs: HomeworkService,
     @Inject(MAT_DIALOG_DATA) public data: Homework
   ) {}

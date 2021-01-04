@@ -1,0 +1,11 @@
+<div mat-dialog-content style="text-align: center;">
+  <p>Homework #{{ data.uuid }}</p>
+  <p>Title: {{ data.title }}</p>
+  <p>Name: {{ data.name }}</p>
+  <p>Description: {{ data.description }}</p>
+  <p>Path to solution: {{ data.path_to_solution }}</p>
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: center">
+  <button mat-button>OK</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

@@ -35,7 +35,7 @@ import { LanguageCardComponent } from './language-card/language-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { DashboardComponent, NewHomeWorkDialogComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, NewHomeWorkDialogComponent, showHomeWorkDialogComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SimplebarAngularModule } from 'simplebar-angular';
@@ -55,7 +55,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     PagenotfoundComponent,
     DashboardComponent,
     TeachersComponent,
-    NewHomeWorkDialogComponent
+    NewHomeWorkDialogComponent,
+    showHomeWorkDialogComponent
   ],
   imports: [
     BrowserModule,

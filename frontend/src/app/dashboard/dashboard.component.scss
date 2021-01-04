@@ -3,7 +3,7 @@
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto;
   background-color: #f8f1f1;
   color: #db6400;
 }
@@ -11,7 +11,7 @@
 .topDiv {
   display: flex;
   position: relative;
-  height: 50%;
+  height: 700px;
   flex-direction:row;
 }
 
@@ -23,14 +23,15 @@
   text-align: center;
   justify-content: center;
   flex-direction: column;
+  margin: 10px;
 }
 
 .userCard {
   display: flex;
   position: relative;
-  top: 20%;
   height: 25em;
   width: 40%;
+  top: 20%;
   border-radius: 100%;
 }
 

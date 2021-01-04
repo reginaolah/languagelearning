@@ -1,7 +1,6 @@
 <div class="content">
-  <div><app-menu></app-menu></div>
-
   <div class="topDiv">
+    <div><app-menu></app-menu></div>
     <div class="userCard">
       <mat-card
         *ngIf="user && !updateUser; else"
@@ -58,7 +57,12 @@
           <form class="example-form">
             <mat-form-field class="example-full-width">
               <mat-label>Homework code</mat-label>
-              <input matInput placeholder="0000" [value]="homeworkCode"/>
+              <input
+                matInput
+                placeholder="0000"
+                [value]="homeworkCode"
+                (change)="onHomeworkCodeChangeHandler($event)"
+              />
             </mat-form-field>
           </form>
         </mat-card-content>
@@ -66,11 +70,11 @@
           <button
             mat-button
             *ngIf="user.role === 'TEACHER'"
-            (click)="openDialog()"
+            (click)="openNewHomeWorkDialog()"
           >
             New
           </button>
-          <button mat-button (click)="onGetHomeworkHandler">Go</button>
+          <button mat-button (click)="onGetHomeworkHandler()">Go</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -145,7 +149,7 @@
                 <span>{{ getLessonLanguage(lesson.lesson_language) }}</span>
               </td>
               <td>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row">
                   <button class="changeLanguageButton" mat-button>
                     Update
                   </button>
@@ -161,20 +165,57 @@
     </div>
     <div class="homeworksCard">
       <mat-card *ngIf="user" style="background-color: #f7c272; color: #111d5e">
-        <mat-card-title style="margin: 10px">Upcoming homeworks</mat-card-title>
+        <mat-card-title style="margin: 10px">Created homeworks</mat-card-title>
         <mat-card-content>
-          <ul class="lessons">
-            <li *ngFor="let lesson of user.lessons">
-              <span>{{ lesson.price }}</span>
-              |
-              <span>{{ lesson.title }}</span>
-            </li>
-          </ul>
+          <table
+            class="lessons"
+            style="
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              font-size: 1.5em;
+            "
+          >
+            <tr>
+              <th>Uuid</th>
+              <th>Title</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+            <tr *ngFor="let homework of allHomeworks">
+              <td>
+                <span>{{ homework.uuid }}</span>
+              </td>
+              <td>
+                <span>{{ homework.title }}</span>
+              </td>
+              <td>
+                <span>{{ homework.name }}</span>
+              </td>
+              <td>
+                <span>{{ homework.description }}</span>
+              </td>
+              <td>
+                <div style="display: flex; flex-direction: row">
+                  <button class="changeLanguageButton" mat-button>
+                    Update
+                  </button>
+                  <button
+                    class="changeLanguageButton"
+                    mat-button
+                    (click)="onDeleteHomeworkHandler(homework.uuid)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
         </mat-card-content>
       </mat-card>
     </div>
     <div class="studentlessonsCard">
-      <mat-card *ngIf="user" style="background-color: #f7c272; color: #111d5e">
+      <mat-card *ngIf="user && user.role==='STUDENT'" style="background-color: #f7c272; color: #111d5e">
         <mat-card-title style="margin: 10px">Upcoming lessons</mat-card-title>
         <mat-card-content>
           <ul class="lessons">
