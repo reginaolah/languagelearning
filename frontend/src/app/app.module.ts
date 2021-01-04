@@ -30,7 +30,6 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { TeachersCardComponent } from './teachers-card/teachers-card.component';
-import { StudentCardComponent } from './student-card/student-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
@@ -53,7 +52,6 @@ import {CalendarModule} from 'primeng/calendar';
     SignupComponent,
     MenuComponent,
     TeachersCardComponent,
-    StudentCardComponent,
     LessonsComponent,
     PagenotfoundComponent,
     DashboardComponent,

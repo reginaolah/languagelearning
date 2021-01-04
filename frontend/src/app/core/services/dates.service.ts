@@ -6,6 +6,7 @@ import { User } from '../interfaces/user.interface';
 import { Lesson } from '../interfaces/lesson.interface';
 import { NotificationService } from './notification.service';
 import { Router } from '@angular/router';
+import { StudentLesson } from '../interfaces/studentlesson.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +21,15 @@ export class DatesService {
     private ns: NotificationService
   ) {}
 
-  async getLessons(): Promise<Lesson[]> {
+  async getLessons(): Promise<StudentLesson[]> {
     let selectedLesson = localStorage.getItem("selectedLanguage");
     const header = new HttpHeaders().set(
       'Authorization',
       `Bearer ${localStorage.getItem('token')}`
     );
     console.log(`Bearer ${localStorage.getItem('token')}`);
-    const lessons: Lesson[] = await this.http
-      .get<Lesson[]>(`${baseUrl}/studentlessons/bookedDates/${selectedLesson}`, { headers: header })
+    const lessons: StudentLesson[] = await this.http
+      .get<StudentLesson[]>(`${baseUrl}/studentlessons/bookedDates/${selectedLesson}`, { headers: header })
       .toPromise();
 
     lessons.forEach(element => {

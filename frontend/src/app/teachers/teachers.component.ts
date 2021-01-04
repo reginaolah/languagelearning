@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { async, Observable } from 'rxjs';
 import { Language } from '../core/interfaces/language.interface';
 import { Lesson } from '../core/interfaces/lesson.interface';
+import { StudentLesson } from '../core/interfaces/studentlesson.interface';
 import { User } from '../core/interfaces/user.interface';
 import { AuthService } from '../core/services/auth.service';
 import { DatesService } from '../core/services/dates.service';
@@ -18,7 +19,7 @@ import {TeachersService} from '../core/services/teachers.service';
 export class TeachersComponent implements OnInit {
 
   teachers: User[] = [];
-  lessons: Lesson[] = [];
+  lessons: StudentLesson[] = [];
   languages: Language[] = [];
   isSignedIn: Observable<boolean>;
   bookedDates: Date[] = [];
@@ -42,7 +43,7 @@ export class TeachersComponent implements OnInit {
         this.teachers = ts;
     })
 
-    this.ds.getLessons().then((ds: Lesson[]) => {
+    this.ds.getLessons().then((ds: StudentLesson[]) => {
       this.lessons = ds;
       this.lessons.forEach(element => {
        this.bookedDates.push(element.date);
