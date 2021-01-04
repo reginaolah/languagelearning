@@ -1,68 +1,77 @@
-<form [formGroup]="signupForm"  display="flex" justify-content="center" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signup(signupForm)" novalidate>
-            <mat-form-field>
-                <input
-                    matInput
-                    type="text"
-                    placeholder="Username"
-                    color="primary"
-                    formControlName="username"
-                    required
-                >
-                <mat-error>Please provide a username!</mat-error>
-            </mat-form-field>
+<form
+  [formGroup]="signupForm"
+  display="flex"
+  justify-content="center"
+  fxLayoutAlign="stretch"
+  fxLayout="column"
+  (ngSubmit)="signup(signupForm)"
+  novalidate
+>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="Username"
+      color="primary"
+      formControlName="username"
+      required
+    />
+    <mat-error>Please provide a username!</mat-error>
+  </mat-form-field>
 
-            <mat-form-field>
-                <input
-                    matInput
-                    type="text"
-                    placeholder="E-mail"
-                    color="primary"
-                    formControlName="email"
-                    required
-                >
-                <mat-error>Please provide an e-mail address!</mat-error>
-            </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="E-mail"
+      color="primary"
+      formControlName="email"
+      required
+    />
+    <mat-error>Please provide an e-mail address!</mat-error>
+  </mat-form-field>
 
-            <mat-form-field>
-                <input
-                    matInput
-                    type="text"
-                    placeholder="First name"
-                    color="primary"
-                    formControlName="first_name"
-                    required
-                >
-                <mat-error>Please provide your first name!</mat-error>
-            </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="First name"
+      color="primary"
+      formControlName="first_name"
+      required
+    />
+    <mat-error>Please provide your first name!</mat-error>
+  </mat-form-field>
 
-            <mat-form-field>
-                <input
-                    matInput
-                    type="text"
-                    placeholder="Last name"
-                    color="primary"
-                    formControlName="last_name"
-                    required
-                >
-                <mat-error>Please provide your last name!</mat-error>
-            </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="Last name"
+      color="primary"
+      formControlName="last_name"
+      required
+    />
+    <mat-error>Please provide your last name!</mat-error>
+  </mat-form-field>
 
-            <mat-form-field>
-                <input
-                    matInput
-                    type="password"
-                    placeholder="Password"
-                    color="primary"
-                    formControlName="password"
-                    required
-                >
-                <mat-error>Please provide a password!</mat-error>
-            </mat-form-field>
-           
-            <mat-radio-group formControlName="role" >
-                <mat-radio-button  class="selectOneBtn" value="STUDENT">Student</mat-radio-button>
-                <mat-radio-button  value="TEACHER">Teacher</mat-radio-button>
-            </mat-radio-group>
-            <button mat-raised-button color="primary">Sign up</button>
+  <mat-form-field>
+    <input
+      matInput
+      type="password"
+      placeholder="Password"
+      color="primary"
+      formControlName="password"
+      required
+    />
+    <mat-error>Please provide a password!</mat-error>
+  </mat-form-field>
+
+  <mat-radio-group formControlName="role">
+    <mat-radio-button class="selectOneBtn" value="STUDENT"
+      >Student</mat-radio-button
+    >
+    <mat-radio-button value="TEACHER">Teacher</mat-radio-button>
+  </mat-radio-group>
+  <button mat-raised-button color="primary">Sign up</button>
 </form>
-

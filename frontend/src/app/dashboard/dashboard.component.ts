@@ -37,9 +37,14 @@ import {
 })
 export class DashboardComponent implements OnInit {
   user: User = null;
-  lessons = null;
-  updateLanguages = false;
   updateUser = false;
+  public updateUserForm: FormGroup;
+  
+
+  lessons = null;
+  public updateLessonForm: FormGroup;
+
+  updateLanguages = false;
   allLanguages = [];
   newLanguages: Array<number> = [];
 
@@ -51,15 +56,31 @@ export class DashboardComponent implements OnInit {
   description: string;
 
   myControl = new FormControl();
+  
 
   constructor(
     public router: Router,
+    private formBuilder: FormBuilder,
     public us: UserService,
     public sls: StudentlessonService,
     public ls: LanguageService,
     public hs: HomeworkService,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.updateUserForm = this.formBuilder.group({
+      username: [null],
+      password: [null],
+      email: [null],
+      first_name: [null],
+      last_name: [null],
+      type: [null],
+      is_native: [null],
+    });
+    this.updateLessonForm = this.formBuilder.group({
+      price: [null],
+      title: [null],
+    });
+  }
 
   ngOnInit(): void {
     this.us.getProfile().then((res) => {
@@ -77,6 +98,18 @@ export class DashboardComponent implements OnInit {
       this.allHomeworks = res;
       console.log(this.allHomeworks);
     });
+  }
+
+  updateUserData(form: FormGroup) {
+    const data = Object.keys(<User>form.value).reduce((r, e) => {
+      if (<User>form.value[e] !== null) {
+        r[e] = <User>form.value[e];
+      }
+      return r;
+    }, {});
+    console.log(data);
+    this.updateUserHandler();
+    this.us.updateUser(<User>data)
   }
 
   getLessonLanguage(code: number): String {

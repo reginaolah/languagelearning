@@ -3,7 +3,7 @@
     <div><app-menu></app-menu></div>
     <div class="userCard">
       <mat-card
-        *ngIf="user && !updateUser; else"
+        *ngIf="user && !updateUser; else updateUserDataDiv"
         style="
           background-color: #f7c272;
           color: #111d5e;
@@ -33,10 +33,10 @@
           <p>{{ user.role }}</p>
           <p *ngIf="user.country">From {{ user.country }}</p>
           <p *ngIf="user.is_native && user.role === 'TEACHER'">
-            Type: {{ user.is_native }}
+            Type: {{ user.type }}
           </p>
           <p *ngIf="user.type && user.role === 'TEACHER'">
-            Type: {{ user.type }}
+            Native speaker: {{ user.is_native }}
           </p>
         </mat-card-content>
       </mat-card>
@@ -215,7 +215,10 @@
       </mat-card>
     </div>
     <div class="studentlessonsCard">
-      <mat-card *ngIf="user && user.role==='STUDENT'" style="background-color: #f7c272; color: #111d5e">
+      <mat-card
+        *ngIf="user && user.role === 'STUDENT'"
+        style="background-color: #f7c272; color: #111d5e"
+      >
         <mat-card-title style="margin: 10px">Upcoming lessons</mat-card-title>
         <mat-card-content>
           <ul class="lessons">
@@ -276,3 +279,124 @@
     </mat-card-actions>
   </mat-card>
 </ng-template>
+
+<ng-template #updateUserDataDiv>
+  <mat-card
+    *ngIf="user"
+    style="
+      background-color: #f7c272;
+      color: #111d5e;
+      height: 35em;
+      width: 20em;
+      margin: 0 auto;
+    "
+  >
+    <div style="width: 100%; height: 100%; position: absolute">
+      <div class="updateUser" *ngIf="user">
+        <button mat-button (click)="cancelActionsHandler()">Cancel</button>
+      </div>
+    </div>
+    <mat-card-title>Update profile</mat-card-title>
+    <mat-card-content>
+      <ngx-simplebar [options]="options">
+        <form
+          [formGroup]="updateUserForm"
+          display="flex"
+          justify-content="center"
+          fxLayoutAlign="stretch"
+          fxLayout="column"
+          (ngSubmit)="updateUserData(updateUserForm)"
+        >
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Username"
+              color="primary"
+              formControlName="username"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="E-mail"
+              color="primary"
+              formControlName="email"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="First name"
+              color="primary"
+              formControlName="first_name"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Last name"
+              color="primary"
+              formControlName="last_name"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              color="primary"
+              formControlName="password"
+            />
+          </mat-form-field>
+
+          <div *ngIf="user.role === 'TEACHER'">
+            <p style="text-align: center"><span>Teacher type</span></p>
+            <mat-radio-group
+              formControlName="type"
+              style="margin: 5px; display: flex; justify-content: center"
+            >
+              <mat-radio-button
+                class="selectOneBtn"
+                value="PROFESSIONAL"
+                style="padding: 5px"
+                >Professional</mat-radio-button
+              >
+              <mat-radio-button value="COMMUNITY" style="padding: 5px"
+                >Community</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+
+          <div *ngIf="user.role === 'TEACHER'">
+            <p style="text-align: center"><span>Native speaker</span></p>
+            <mat-radio-group
+              formControlName="is_native"
+              style="margin: 5px; display: flex; justify-content: center"
+            >
+              <mat-radio-button
+                class="selectOneBtn"
+                value="true"
+                style="padding: 5px"
+                >Yes</mat-radio-button
+              >
+              <mat-radio-button value="false" style="padding: 5px"
+                >No</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+          <button mat-raised-button color="primary">Update</button>
+        </form>
+      </ngx-simplebar>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+//TODO intro

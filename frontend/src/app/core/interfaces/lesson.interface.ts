@@ -1,4 +1,5 @@
 export interface Lesson {
-  id: string;
-  date: string;
+  id: number;
+  title: string;
+  price: number;
 }
