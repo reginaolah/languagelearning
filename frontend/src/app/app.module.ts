@@ -35,11 +35,12 @@ import { LanguageCardComponent } from './language-card/language-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { DashboardComponent, NewHomeWorkDialogComponent, showHomeWorkDialogComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, NewHomeWorkDialogComponent, ShowHomeWorkDialogComponent, NewLessonDialogComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -56,12 +57,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
     DashboardComponent,
     TeachersComponent,
     NewHomeWorkDialogComponent,
-    showHomeWorkDialogComponent
+    ShowHomeWorkDialogComponent,
+    NewLessonDialogComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,

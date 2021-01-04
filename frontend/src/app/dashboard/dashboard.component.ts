@@ -29,6 +29,8 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { LessonService } from '../core/services/lesson.service';
+import { Lesson } from '../core/interfaces/lesson.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,10 +41,12 @@ export class DashboardComponent implements OnInit {
   user: User = null;
   updateUser = false;
   public updateUserForm: FormGroup;
-  
 
   lessons = null;
   public updateLessonForm: FormGroup;
+  lessonPrice: number;
+  lessonTitle: string;
+  lessonLanguage: number;
 
   updateLanguages = false;
   allLanguages = [];
@@ -55,8 +59,9 @@ export class DashboardComponent implements OnInit {
   name: string;
   description: string;
 
+  studentLessons = [];
+
   myControl = new FormControl();
-  
 
   constructor(
     public router: Router,
@@ -65,6 +70,7 @@ export class DashboardComponent implements OnInit {
     public sls: StudentlessonService,
     public ls: LanguageService,
     public hs: HomeworkService,
+    public les: LessonService,
     public dialog: MatDialog
   ) {
     this.updateUserForm = this.formBuilder.group({
@@ -73,6 +79,7 @@ export class DashboardComponent implements OnInit {
       email: [null],
       first_name: [null],
       last_name: [null],
+      country: [null],
       type: [null],
       is_native: [null],
     });
@@ -98,6 +105,19 @@ export class DashboardComponent implements OnInit {
       this.allHomeworks = res;
       console.log(this.allHomeworks);
     });
+    this.sls.getLessons().then((res) => {
+      this.studentLessons = res;
+      console.log(res);
+    });
+  }
+
+  dateConverter(wrongDate): String {
+    let date = new Date(wrongDate);
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let dt = date.getDate();
+
+    return year + '/' + month + '/' + dt;
   }
 
   updateUserData(form: FormGroup) {
@@ -109,7 +129,7 @@ export class DashboardComponent implements OnInit {
     }, {});
     console.log(data);
     this.updateUserHandler();
-    this.us.updateUser(<User>data)
+    this.us.updateUser(<User>data);
   }
 
   getLessonLanguage(code: number): String {
@@ -118,6 +138,15 @@ export class DashboardComponent implements OnInit {
         return language.language;
       }
     }
+  }
+
+  onDeleteStudentlessonHandler(id: number) {
+    console.log(id);
+    this.sls.deleteStudentlesson(id);
+  }
+
+  onDeleteLessonHandler(id: number) {
+    this.les.deleteLesson(id);
   }
 
   alreadyChecked(code: number): boolean {
@@ -196,9 +225,31 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  openNewLessonDialog(): void {
+    const dialogRef = this.dialog.open(NewLessonDialogComponent, {
+      width: '250px',
+      data: {
+        price: this.lessonPrice,
+        title: this.lessonTitle,
+        lesson_language: this.lessonLanguage,
+        languages: this.allLanguages,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: Lesson) => {
+      console.log('The dialog was closed');
+      if (result) {
+        console.log(result);
+        this.les.newLesson(result);
+      }
+
+      console.log(result);
+    });
+  }
+
   openHomeWorkDialog(hw: Homework): void {
     console.log(hw);
-    const dialogRef = this.dialog.open(showHomeWorkDialogComponent, {
+    const dialogRef = this.dialog.open(ShowHomeWorkDialogComponent, {
       width: '500px',
       height: '300px',
       data: {
@@ -234,13 +285,30 @@ export class NewHomeWorkDialogComponent {
 }
 
 @Component({
+  selector: 'new-lesson-dialog',
+  templateUrl: 'new-lesson-dialog.html',
+  styleUrls: ['./dashboard.component.scss'],
+})
+export class NewLessonDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<NewLessonDialogComponent>,
+    public ls: LessonService,
+    @Inject(MAT_DIALOG_DATA) public data: Lesson
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
   selector: 'show-homework-dialog',
   templateUrl: 'show-homework-dialog.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class showHomeWorkDialogComponent {
+export class ShowHomeWorkDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<showHomeWorkDialogComponent>,
+    public dialogRef: MatDialogRef<ShowHomeWorkDialogComponent>,
     public hs: HomeworkService,
     @Inject(MAT_DIALOG_DATA) public data: Homework
   ) {}

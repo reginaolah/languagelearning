@@ -116,7 +116,7 @@
   <div class="bottomDiv">
     <div class="soldlessonsCard">
       <mat-card
-        *ngIf="user && user.role === 'TEACHER'"
+        *ngIf="user && user.role === 'TEACHER'; else lessonsDiv"
         style="background-color: #f7c272; color: #111d5e"
       >
         <mat-card-title style="margin: 10px">Sold lessons</mat-card-title>
@@ -135,7 +135,13 @@
               <th>Title</th>
               <th>Language</th>
               <th>
-                <button class="changeLanguageButton" mat-button>New</button>
+                <button
+                  class="changeLanguageButton"
+                  mat-button
+                  (click)="openNewLessonDialog()"
+                >
+                  New
+                </button>
               </th>
             </tr>
             <tr *ngFor="let lesson of user.lessons">
@@ -153,7 +159,11 @@
                   <button class="changeLanguageButton" mat-button>
                     Update
                   </button>
-                  <button class="changeLanguageButton" mat-button>
+                  <button
+                    class="changeLanguageButton"
+                    mat-button
+                    (click)="onDeleteLessonHandler(lesson.id)"
+                  >
                     Delete
                   </button>
                 </div>
@@ -164,7 +174,10 @@
       </mat-card>
     </div>
     <div class="homeworksCard">
-      <mat-card *ngIf="user" style="background-color: #f7c272; color: #111d5e">
+      <mat-card
+        *ngIf="user && user.role === 'TEACHER'"
+        style="background-color: #f7c272; color: #111d5e"
+      >
         <mat-card-title style="margin: 10px">Created homeworks</mat-card-title>
         <mat-card-content>
           <table
@@ -214,25 +227,49 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="studentlessonsCard">
-      <mat-card
-        *ngIf="user && user.role === 'STUDENT'"
-        style="background-color: #f7c272; color: #111d5e"
-      >
-        <mat-card-title style="margin: 10px">Upcoming lessons</mat-card-title>
-        <mat-card-content>
-          <ul class="lessons">
-            <li *ngFor="let lesson of user.lessons">
-              <span>{{ lesson.price }}</span>
-              |
-              <span>{{ lesson.title }}</span>
-            </li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
 </div>
+
+<ng-template #lessonsDiv>
+  <div class="studentlessonsCard">
+    <mat-card style="background-color: #f7c272; color: #111d5e">
+      <mat-card-title style="margin: 10px">Upcoming lessons</mat-card-title>
+      <mat-card-content>
+        <table
+          class="lessons"
+          style="
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 1.5em;
+          "
+        >
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+          </tr>
+          <tr *ngFor="let lesson of studentLessons">
+            <td>
+              <span>{{ dateConverter(lesson.date) }}</span>
+            </td>
+            <td>
+              <span>{{ lesson.lesson }}</span>
+            </td>
+            <td>
+              <button
+                class="changeLanguageButton"
+                mat-button
+                (click)="onDeleteStudentlessonHandler(lesson.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
 
 <ng-template #changeLanguageDiv>
   <mat-card
@@ -354,6 +391,16 @@
               placeholder="Password"
               color="primary"
               formControlName="password"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Country"
+              color="primary"
+              formControlName="country"
             />
           </mat-form-field>
 

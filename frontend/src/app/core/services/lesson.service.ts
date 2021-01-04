@@ -17,6 +17,24 @@ export class LessonService {
     private ns: NotificationService
   ) {}
 
+  newLesson(lesson: Lesson): void {
+    const header = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http
+      .post<Lesson>(`${baseUrl}/lessons/newlesson`, lesson, {
+        headers: header,
+      })
+      .subscribe(
+        (data) => {},
+        (error) => {
+          this.ns.show('HIBA! Regisztráció sikertelen!');
+          console.error(error);
+        }
+      );
+  }
+
   updateLesson(id: number, lesson: Lesson) {
     const header = new HttpHeaders().set(
       'Authorization',
@@ -35,5 +53,19 @@ export class LessonService {
           console.error(error);
         }
       );
+  }
+
+  deleteLesson(id: number): void {
+    const header = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http
+      .delete(`${baseUrl}/lessons/delete/${id}`, {
+        headers: header,
+        responseType: 'text',
+      })
+      .subscribe();
+    this.router.navigate(['/dashboard']);
   }
 }
