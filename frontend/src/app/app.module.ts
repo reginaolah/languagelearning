@@ -31,7 +31,6 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { TeachersCardComponent } from './teachers-card/teachers-card.component';
 import { StudentCardComponent } from './student-card/student-card.component';
-import { LanguageCardComponent } from './language-card/language-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
@@ -41,6 +40,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {CarouselModule} from 'primeng/carousel';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MenuComponent,
     TeachersCardComponent,
     StudentCardComponent,
-    LanguageCardComponent,
     LessonsComponent,
     PagenotfoundComponent,
     DashboardComponent,
@@ -90,8 +92,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCheckboxModule,
     SimplebarAngularModule,
     MatGridListModule,
+    CarouselModule,
+    MatDatepickerModule,
+    CalendarModule,
+    MatNativeDateModule, 
+    MatDatepickerModule,
+    MatNativeDateModule 
+    
   ],
-  providers: [AuthGuard, AnonymGuard],
+  providers: [AuthGuard, AnonymGuard,  MatDatepickerModule, MatNativeDateModule ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

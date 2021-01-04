@@ -4,42 +4,50 @@
 <div class="onImg">
   <h1 class="headerText">Become Fluent in Any Language</h1>
   <h3 class="subtitle">Choose from over 10,000 teachers for 1-on-1 lessons based on your goals and interests.</h3> 
-  <form>
-    <mat-form-field class="autocompleteSearch">
-      <input class="searchInput" type="text" placeholder="Choose a language..." matInput [matAutocomplete]="auto" [formControl]="myControl" />
-      
-      <mat-autocomplete class="autoComplete" #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <mat-button class="searchIcon" routerLink="/teachers">
-      <mat-icon >search</mat-icon>
-    </mat-button>
-  </form>
-</div>
-</div>
-
-<div class="teacher-cards" fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div fxFlex="25%" *ngFor="let language of languages">
-      <mat-card class="example-card" routerLink="/languages">
-          <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>{{ language.language }}</mat-card-title>
-              <mat-card-subtitle></mat-card-subtitle>
-          </mat-card-header>
-        <img mat-card-image src="../assets/french_teacher.jpg" />
-      </mat-card>
+  <div class="autoCompSearch">
+    <form>
+      <mat-form-field class="autocompleteSearch">
+        <input #selected matInput type="text" [matAutocomplete]="auto" [formControl]="myControl"/>
+          <mat-placeholder class="placeholder">Choose a language...</mat-placeholder>
+        <mat-autocomplete class="autoComplete" #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="setSelectedLanguage(option)">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button type="button" class="searchButton" mat-button routerLink="/teachers">
+        <mat-icon class="searchIcon">search</mat-icon>
+    </button>
+    </form>
   </div>
+ 
 </div>
-	
+</div>
+<div class="p-d-flex" style="margin-left:10%; margin-right: 10%; justify-content: center;
+align-items: center;">
+<p-carousel [numVisible]="3" [numScroll]="1" [value]="languages" [autoplayInterval]="3000" [circular]="true">
+  <ng-template let-language pTemplate="language">
+          <mat-card class="example-card" routerLink="/teachers" (click)="setSelectedLanguage(language.language)">
+              <mat-card-header>
+                  <div mat-card-avatar class="example-header-image" style="background-image: url('../assets/{{language.language}}.png');
+                  background-size: cover;
+                  margin-bottom: 10px;"></div>
+                  <mat-card-title>{{ language.language }}</mat-card-title>
+                  <mat-card-subtitle></mat-card-subtitle>
+              </mat-card-header>
+            <img class="languageImage" mat-card-image src="../assets/{{language.language}}_teacher.jpg" />
+          </mat-card>
+  </ng-template>
+</p-carousel>
+</div>
 
-<button class="ftButton" mat-button routerLink="/teachers">FIND YOUR TEACHER</button>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <button class="ftButton"  mat-button routerLink="/teachers">FIND YOUR TEACHER</button>
+</div>
  
 </div>
 <ng-template #nodrawer>
-  <div class="wrapper dynamic-background">
+  <div class="wrapper">
     <router-outlet></router-outlet>
   </div>
 </ng-template>

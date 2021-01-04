@@ -31,7 +31,7 @@ export class SigninComponent {
       this.as.signin(<User>form.value);
     }
     else {
-      this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.ns.show('Error! Invalid credentials!');
     }
   }
 

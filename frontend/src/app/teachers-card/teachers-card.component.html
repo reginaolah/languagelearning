@@ -1,1 +1,45 @@
-<p>teachers-card works!</p>
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{teacher.first_name + " " + teacher.last_name }}
+        </mat-panel-title>
+        <mat-panel-description>
+         Book a lesson
+          <mat-icon>date_range</mat-icon>
+        </mat-panel-description>
+        
+      </mat-expansion-panel-header>
+      <div style="display: flex;">
+    <mat-card style=" width: 150px; margin-right: 10px;
+    height: 60%; background-color: darkgray;" >
+       <mat-card-header> Teaches: </mat-card-header>
+            <mat-card-content> 
+                <mat-list role="list" >
+                    <mat-list-item style="display: list-item; margin-left:10px; margin-top:0px;"
+                     *ngFor="let language of teacher.languages">{{ language.language }}</mat-list-item>
+                    </mat-list>
+            </mat-card-content>
+    </mat-card>
+    <mat-card style=" width: 150px; margin-right: 10px;
+    height: 60%; background-color: darkgray;" >
+       <mat-card-header> Available lessons: </mat-card-header>
+                <mat-card-content style="height:100%"> 
+                    <mat-selection-list [multiple]="false" style="max-height:2%">
+                    <mat-list-option *ngFor="let lesson of teacher.lessons" (click)="setSelectedLesson(lesson)">
+                        {{ lesson.title +" "+lesson.price }}
+                    </mat-list-option>
+                    </mat-selection-list>
+                </mat-card-content>
+    </mat-card>
+   
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input [(ngModel)]="date"  matInput [matDatepicker]="picker" [min]="todayDate" [matDatepickerFilter]="dateFilter" (focus)="picker.open()">
+      </mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+      <button (click)="bookLesson(date)" style="background-color: darkgrey; height: 35px; margin-left: 10px;" mat-button matTooltip="Book a lesson">Book</button>
+    </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
