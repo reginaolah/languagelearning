@@ -26,6 +26,7 @@ export class LanguageService {
         );
 
         const languages: Language[] = await this.http.get<Language[]>(`${baseUrl}/languages`, {headers: header}).toPromise();
+        console.log(languages)
         return languages;               
     }
 

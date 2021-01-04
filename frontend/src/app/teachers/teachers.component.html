@@ -1,2 +1,4 @@
-<app-menu></app-menu>
-
+<app-menu (languageChanged)="languageChangedHandler($event)"></app-menu>
+<div class="p-d-flex" *ngFor="let teacher of teachers" style="margin-top:50px; justify-content: center; align-items: center;">
+	<app-teachers-card [teacher]="teacher" [isSignedIn$]="(isSignedIn | async)" [bookedDates]="(bookedDates)"></app-teachers-card>
+</div>

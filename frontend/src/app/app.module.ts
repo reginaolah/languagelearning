@@ -31,12 +31,15 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { MenuComponent } from './menu/menu.component';
 import { TeachersCardComponent } from './teachers-card/teachers-card.component';
 import { StudentCardComponent } from './student-card/student-card.component';
-import { LanguageCardComponent } from './language-card/language-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
+import {CarouselModule} from 'primeng/carousel';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,6 @@ import { TeachersComponent } from './teachers/teachers.component';
     MenuComponent,
     TeachersCardComponent,
     StudentCardComponent,
-    LanguageCardComponent,
     LessonsComponent,
     PagenotfoundComponent,
     DashboardComponent,
@@ -79,8 +81,15 @@ import { TeachersComponent } from './teachers/teachers.component';
     MatRadioModule,
     MatTabsModule,
     MatPasswordStrengthModule,
+    CarouselModule,
+    MatDatepickerModule,
+    CalendarModule,
+    MatNativeDateModule, 
+    MatDatepickerModule,
+    MatNativeDateModule 
+    
   ],
-  providers: [AuthGuard, AnonymGuard],
+  providers: [AuthGuard, AnonymGuard,  MatDatepickerModule, MatNativeDateModule ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

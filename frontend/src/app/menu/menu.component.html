@@ -2,9 +2,17 @@
       <mat-toolbar-row  #stickyMenu [class.sticky] = "sticky" [class.stickywhite] = "stickywhite">  
       <div #whiteLogo [class.whitelogo] = "whitelogo" routerLink=""></div>
       <div #transparentLogo [class.transparentlogo] = "transparentlogo" routerLink=""></div>
+      <div style="margin-left: 30px;" class="dropdown" *ngIf="router.url == '/teachers'">
+        <mat-form-field style="width: 210px;">
+          <mat-placeholder class="placeholder">Choose a language...</mat-placeholder>
+          <mat-select [value]="selected">
+            <mat-option (click)="setSelectedLanguage(language)" *ngFor="let language of options" [value]="language">{{language}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
       <div class="spacer"></div>
      
-    
       <div *ngIf="(isSignedIn$ | async); else elseBlock">
         <button mat-button (click)="signout()">Signout</button> 
       </div>

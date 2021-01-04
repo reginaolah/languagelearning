@@ -27,7 +27,9 @@ export class AppComponent implements OnInit {
   
   myControl = new FormControl();
 
+  @Input() selected: string = null;
 
+  
   constructor(
     public router: Router,
     public ls: LanguageService
@@ -36,8 +38,6 @@ export class AppComponent implements OnInit {
     ngOnInit() {
       this.ls.getLanguages().then((languages: Language[]) =>{
       this.languages = languages;
-      console.log(this.languages);
-      console.log(languages);
       languages.forEach( element => {
         this.options.push(element.language);
       });
@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+  
   }
  
   private _filter(value: string): string[] {
@@ -54,5 +55,15 @@ export class AppComponent implements OnInit {
     return this.options.filter(option =>
       option.toLowerCase().includes(filterValue)
       );
+  }
+
+  setSelectedLanguage(language: string) {
+    this.languages.forEach(element => {
+      if(element.language == language){
+        localStorage.setItem('selectedLanguage', element.id.toString());
+      }
+      
+    })
+  
   }
 }
