@@ -265,6 +265,27 @@ export class DashboardComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+
+  openUpdateLessonDialog(lesson: Lesson): void {
+    const dialogRef = this.dialog.open(UpdateLessonDialogComponent, {
+      width: '250px',
+      data: {
+        id: lesson.id,
+        price: lesson.price,
+        title: lesson.title,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: Lesson) => {
+      console.log('The dialog was closed');
+      if (result) {
+        console.log(result);
+        this.les.updateLesson(result.id, result);
+      }
+
+      console.log(result);
+    });
+  }
 }
 
 @Component({
@@ -292,6 +313,23 @@ export class NewHomeWorkDialogComponent {
 export class NewLessonDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<NewLessonDialogComponent>,
+    public ls: LessonService,
+    @Inject(MAT_DIALOG_DATA) public data: Lesson
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'update-lesson-dialog',
+  templateUrl: 'update-lesson-dialog.html',
+  styleUrls: ['./dashboard.component.scss'],
+})
+export class UpdateLessonDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<UpdateLessonDialogComponent>,
     public ls: LessonService,
     @Inject(MAT_DIALOG_DATA) public data: Lesson
   ) {}

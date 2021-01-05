@@ -89,7 +89,7 @@
           margin: 0 auto;
         "
       >
-        <mat-card-title>Choosen languages</mat-card-title>
+        <mat-card-title>Chosen languages</mat-card-title>
         <mat-card-content>
           <ul class="languages">
             <ngx-simplebar [options]="options">
@@ -134,10 +134,10 @@
               <th>Price</th>
               <th>Title</th>
               <th>Language</th>
-              <th>
+              <th style="display: flex;justify-content: center;">
                 <button
                   class="changeLanguageButton"
-                  mat-button
+                  mat-raised-button
                   (click)="openNewLessonDialog()"
                 >
                   New
@@ -156,12 +156,19 @@
               </td>
               <td>
                 <div style="display: flex; flex-direction: row">
-                  <button class="changeLanguageButton" mat-button>
+                  <button
+                    class="changeLanguageButton"
+                    mat-raised-button
+                    color="primary"
+                    (click)="openUpdateLessonDialog(lesson)"
+                    style="margin: 0 5px 0"
+                  >
                     Update
                   </button>
                   <button
                     class="changeLanguageButton"
-                    mat-button
+                    mat-raised-button
+                    color="warn"
                     (click)="onDeleteLessonHandler(lesson.id)"
                   >
                     Delete
@@ -210,12 +217,10 @@
               </td>
               <td>
                 <div style="display: flex; flex-direction: row">
-                  <button class="changeLanguageButton" mat-button>
-                    Update
-                  </button>
                   <button
                     class="changeLanguageButton"
-                    mat-button
+                    mat-raised-button
+                    color="warn"
                     (click)="onDeleteHomeworkHandler(homework.uuid)"
                   >
                     Delete
@@ -247,19 +252,24 @@
           <tr>
             <th>Date</th>
             <th>Title</th>
+            <th>Price</th>
           </tr>
           <tr *ngFor="let lesson of studentLessons">
             <td>
               <span>{{ dateConverter(lesson.date) }}</span>
             </td>
             <td>
-              <span>{{ lesson.lesson }}</span>
+              <span>{{ lesson.lesson.title }}</span>
+            </td>
+            <td>
+              <span>{{ lesson.lesson.price }}</span>
             </td>
             <td>
               <button
                 class="changeLanguageButton"
-                mat-button
                 (click)="onDeleteStudentlessonHandler(lesson.id)"
+                mat-raised-button
+                color="warn"
               >
                 Delete
               </button>
@@ -323,7 +333,7 @@
     style="
       background-color: #f7c272;
       color: #111d5e;
-      height: 35em;
+      height: 40em;
       width: 20em;
       margin: 0 auto;
     "
@@ -445,5 +455,3 @@
     </mat-card-content>
   </mat-card>
 </ng-template>
-
-//TODO intro

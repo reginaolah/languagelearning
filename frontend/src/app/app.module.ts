@@ -33,7 +33,7 @@ import { TeachersCardComponent } from './teachers-card/teachers-card.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { DashboardComponent, NewHomeWorkDialogComponent, ShowHomeWorkDialogComponent, NewLessonDialogComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, NewHomeWorkDialogComponent, ShowHomeWorkDialogComponent, NewLessonDialogComponent, UpdateLessonDialogComponent } from './dashboard/dashboard.component';
 import { TeachersComponent } from './teachers/teachers.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SimplebarAngularModule } from 'simplebar-angular';
@@ -59,6 +59,7 @@ import {CalendarModule} from 'primeng/calendar';
     NewHomeWorkDialogComponent,
     ShowHomeWorkDialogComponent,
     NewLessonDialogComponent,
+    UpdateLessonDialogComponent,
   ],
   imports: [
     BrowserModule,

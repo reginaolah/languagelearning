@@ -74,7 +74,7 @@ export class HomeworkService {
     this.http
       .delete(`${baseUrl}/homeworks/delete/${uuid}`, {
         headers: header,
-        responseType: 'json',
+        responseType: 'text',
       })
       .subscribe();
     this.router.navigate(['/dashboard']);

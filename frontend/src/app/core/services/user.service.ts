@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  //user$ = new BehaviorSubject<User>(null);
 
   constructor(
     private http: HttpClient,
